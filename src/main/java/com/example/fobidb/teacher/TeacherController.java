@@ -1,5 +1,6 @@
 package com.example.fobidb.teacher;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,18 +11,16 @@ import java.util.List;
 @RequestMapping(path = "api/v1/teacher")
 public class TeacherController {
 
+    private final TeacherService teacherService;
+
+    @Autowired
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
+    }
+
     @GetMapping
-    public List<Teacher> getTeachers() { //ist getTeachers() eine von Spring bereitgestellte Methode?
-        return List.of(
-                new Teacher(
-                        1,
-                        "Schubert",
-                        "Simon",
-                        "sb",
-                        "simon.schubert@aloberlin.de",
-                        45
-                )
-        );
+    public List<Teacher> getTeachers() {
+        return teacherService.getTeachers();
     }
 
 }
