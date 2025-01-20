@@ -1,6 +1,21 @@
 package com.example.fobidb.teacher;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table
 public class Teacher {
+    @Id
+    @SequenceGenerator(
+        name = "teacher_sequence",
+        sequenceName = "teacher_sequence",
+        allocationSize = 1
+    )
+    @GeneratedValue(
+        strategy = GenerationType.SEQUENCE,
+        generator = "teacher_sequence"
+    )
     public int id;
     public String surname;
     public String name;
