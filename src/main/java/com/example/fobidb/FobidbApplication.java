@@ -1,4 +1,4 @@
-package com.example.fobidb;
+package com.example.fobidb; //
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
