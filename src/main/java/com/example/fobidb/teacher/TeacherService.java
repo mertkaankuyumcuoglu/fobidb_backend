@@ -1,6 +1,5 @@
 package com.example.fobidb.teacher;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +9,7 @@ public class TeacherService {
     public List<Teacher> getTeachers() { //ist getTeachers() eine von Spring bereitgestellte Methode?
         return List.of(
             new Teacher(
-                1,
+                1L,
                 "Schubert",
                 "Simon",
                 "sb",

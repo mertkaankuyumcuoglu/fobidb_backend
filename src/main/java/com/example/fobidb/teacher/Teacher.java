@@ -16,7 +16,7 @@ public class Teacher {
         strategy = GenerationType.SEQUENCE,
         generator = "teacher_sequence"
     )
-    public int id;
+    public Long id;
     public String surname;
     public String name;
     public String name_short;
@@ -26,7 +26,7 @@ public class Teacher {
     public Teacher() {
     }
 
-    public Teacher(int id, String surname, String name, String name_short, String email, int training_time) {
+    public Teacher(Long id, String surname, String name, String name_short, String email, int training_time) {
         this.id = id;
         this.surname = surname;
         this.name = name;
@@ -43,7 +43,7 @@ public class Teacher {
         this.training_time = training_time;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -67,7 +67,7 @@ public class Teacher {
         return training_time;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
