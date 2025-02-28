@@ -1,9 +1,7 @@
 package com.example.fobidb.teacher;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +19,11 @@ public class TeacherController {
     @GetMapping
     public List<Teacher> getTeachers() {
         return teacherService.getTeachers();
+    }
+
+    @PostMapping
+    public void registerTeacher(@RequestBody Teacher teacher) {
+        teacherService.addNewTeacher(teacher);
     }
 
 }

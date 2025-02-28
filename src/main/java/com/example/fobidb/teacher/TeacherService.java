@@ -16,4 +16,8 @@ public class TeacherService {
     public List<Teacher> getTeachers() { //ist getTeachers() eine von Spring bereitgestellte Methode?
         return teacherRepository.findAll();
     }
+
+    public void addNewTeacher(Teacher teacher) {
+        System.out.println(teacher);
+    }
 }
