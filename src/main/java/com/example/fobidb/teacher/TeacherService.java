@@ -2,6 +2,7 @@ package com.example.fobidb.teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TeacherService {
@@ -18,6 +19,11 @@ public class TeacherService {
     }
 
     public void addNewTeacher(Teacher teacher) {
-        System.out.println(teacher);
+       Optional<Teacher> teacherByEmail = teacherRepository
+           .findTeacherByEmail(teacher.getEmail());
+       if (teacherByEmail.isPresent()) {
+           throw new IllegalStateException("Email exists already");
+       }
+       teacherRepository.save(teacher);
     }
 }
