@@ -38,14 +38,13 @@ public class TeacherService {
         teacherRepository.deleteById(teacherId);
     }
 
-    /*
     @Transactional
     public void updateTeacher(Long teacherId,
                               String surname,
                               String name,
-                              String name_short,
+                              String nameshort,
                               String email,
-                              int training_time) {
+                              int trainingtime) {
         Teacher teacher = teacherRepository.findById(teacherId)
             .orElseThrow(() -> new IllegalStateException(
                 "Teacher with id " + teacherId + " does not exist"));
@@ -60,16 +59,16 @@ public class TeacherService {
         }
 
         //Check for name
-        if(name != null &&
+        if (name != null &&
             name.length() > 0 &&
-            !Objects.equals(teacher.getName(), name)){
+            !Objects.equals(teacher.getName(), name)) {
             Optional<Teacher> teacherOptional = teacherRepository
                 .findTeacherByName(name);
             teacher.setName(name);
         }
 
         //Check for email
-        if(email != null &&
+        if (email != null &&
             email.length() > 0 &&
             !Objects.equals(teacher.getEmail(), email)) {
             Optional<Teacher> teacherOptional = teacherRepository
@@ -82,5 +81,4 @@ public class TeacherService {
 
         //HIER FORTSETZEN
     }
-     */
 }

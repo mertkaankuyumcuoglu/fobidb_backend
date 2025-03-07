@@ -19,28 +19,28 @@ public class Teacher {
     public Long id;
     public String surname;
     public String name;
-    public String name_short;
+    public String nameshort;
     public String email;
-    public int training_time;
+    public int trainingtime;
 
     public Teacher() {
     }
 
-    public Teacher(Long id, String surname, String name, String name_short, String email, int training_time) {
+    public Teacher(Long id, String surname, String name, String nameshort, String email, int trainingtime) {
         this.id = id;
         this.surname = surname;
         this.name = name;
-        this.name_short = name_short;
+        this.nameshort = nameshort;
         this.email = email;
-        this.training_time = training_time;
+        this.trainingtime = trainingtime;
     }
 
-    public Teacher(String surname, String name, String name_short, String email, int training_time) {
+    public Teacher(String surname, String name, String nameshort, String email, int trainingtime) {
         this.surname = surname;
         this.name = name;
-        this.name_short = name_short;
+        this.nameshort = nameshort;
         this.email = email;
-        this.training_time = training_time;
+        this.trainingtime = trainingtime;
     }
 
     public Long getId() {
@@ -55,16 +55,16 @@ public class Teacher {
         return name;
     }
 
-    public String getName_short() {
-        return name_short;
+    public String getNameshort() {
+        return nameshort;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public int getTraining_time() {
-        return training_time;
+    public int getTrainingtime() {
+        return trainingtime;
     }
 
     public void setId(Long id) {
@@ -79,16 +79,16 @@ public class Teacher {
         this.name = name;
     }
 
-    public void setName_short(String name_short) {
-        this.name_short = name_short;
+    public void setNameshort(String nameshort) {
+        this.nameshort = nameshort;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setTraining_time(int training_time) {
-        this.training_time = training_time;
+    public void setTrainingtime(int trainingtime) {
+        this.trainingtime = trainingtime;
     }
 
     @Override
@@ -97,9 +97,9 @@ public class Teacher {
                 "id=" + id +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
-                ", name_short='" + name_short + '\'' +
+                ", nameshort='" + nameshort + '\'' +
                 ", email='" + email + '\'' +
-                ", training_time=" + training_time +
+                ", trainingtime=" + trainingtime +
                 '}';
     }
 }
