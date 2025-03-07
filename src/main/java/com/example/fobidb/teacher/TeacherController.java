@@ -26,4 +26,21 @@ public class TeacherController {
         teacherService.addNewTeacher(teacher);
     }
 
+    @DeleteMapping(path = "/{teacherId}")
+    public void deleteTeacher(@PathVariable("teacherId") Long teacherId){
+        teacherService.deleteTeacher(teacherId);
+    }
+
+    /*
+    @PutMapping(path = "{teacherId}")
+    public void updateTeacher(
+        @PathVariable("teacherId") Long teacherId,
+        @RequestParam(required = false) String surname,
+        @RequestParam(required = false) String name,
+        @RequestParam(required = false) String name_short,
+        @RequestParam(required = false) String email,
+        @RequestParam(required = false) int training_time){
+        teacherService.updateTeacher(teacherId, surname, name, name_short, email, training_time);
+    }
+     */
 }
