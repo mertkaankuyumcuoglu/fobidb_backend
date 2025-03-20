@@ -39,7 +39,7 @@ public class TeacherController {
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String nameshort,
         @RequestParam(required = false) String email,
-        @RequestParam(required = false) int trainingtime) {
+        @RequestParam(required = false) Integer trainingtime) {
         teacherService.updateTeacher(teacherId, surname, name, nameshort, email, trainingtime);
     }
 }

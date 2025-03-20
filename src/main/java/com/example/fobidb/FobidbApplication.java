@@ -12,5 +12,7 @@ public class FobidbApplication {
 
 }
 
+//Datenbank <-> Repository <-> Service <-> Controller <-> Browser
+
 // Video Stelle: 1:24:36
 // Link: https://www.youtube.com/watch?v=9SGDpanrc8U&t=1499s

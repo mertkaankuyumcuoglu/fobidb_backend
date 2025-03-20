@@ -1,6 +1,5 @@
 package com.example.fobidb.teacher;
 
-
 import jakarta.persistence.*;
 
 @Entity
@@ -21,21 +20,21 @@ public class Teacher {
     public String name;
     public String nameshort;
     public String email;
-    public int trainingtime;
+    public Integer trainingtime;
 
     public Teacher() {
     }
 
-    public Teacher(Long id, String surname, String name, String nameshort, String email, int trainingtime) {
-        this.id = id;
-        this.surname = surname;
-        this.name = name;
-        this.nameshort = nameshort;
-        this.email = email;
-        this.trainingtime = trainingtime;
-    }
+//    public Teacher(Long id, String surname, String name, String nameshort, String email, Integer trainingtime) {
+//        this.id = id;
+//        this.surname = surname;
+//        this.name = name;
+//        this.nameshort = nameshort;
+//        this.email = email;
+//        this.trainingtime = trainingtime;
+//    }
 
-    public Teacher(String surname, String name, String nameshort, String email, int trainingtime) {
+    public Teacher(String surname, String name, String nameshort, String email, Integer trainingtime) {
         this.surname = surname;
         this.name = name;
         this.nameshort = nameshort;
@@ -63,7 +62,7 @@ public class Teacher {
         return email;
     }
 
-    public int getTrainingtime() {
+    public Integer getTrainingtime() {
         return trainingtime;
     }
 
@@ -87,13 +86,13 @@ public class Teacher {
         this.email = email;
     }
 
-    public void setTrainingtime(int trainingtime) {
+    public void setTrainingtime(Integer trainingtime) {
         this.trainingtime = trainingtime;
     }
 
     @Override
     public String toString() {
-        return "Teacher{" +
+        return  "Teacher{" +
                 "id=" + id +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
