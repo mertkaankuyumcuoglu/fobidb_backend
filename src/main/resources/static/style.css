@@ -1,0 +1,41 @@
+/* Tabelle */
+table {
+    font-weight: bold;
+    width: 100%;
+    margin: 4rem auto 80px auto; /* Abstände */
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+table th,
+table td {
+    border: 1px solid #000;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #0029b0;
+    color: white;
+}
+
+/* ID-Spalte */
+.ID {
+    border: 1px solid #000;
+    width: 10px;
+    padding: 10px;
+    text-align: left;
+    background-color: #5038a7;
+    color: white;
+}
+
+/* Zebra-Streifen */
+table tr:nth-child(even) {
+    background-color: #f7f8ff;
+}
+
+/* Hover-Effekt für Tabellenzeilen */
+table tr:hover {
+    background-color: #ddd;
+}

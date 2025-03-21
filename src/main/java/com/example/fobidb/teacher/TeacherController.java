@@ -30,8 +30,7 @@ public class TeacherController {
     public void deleteTeacher(@PathVariable("teacherId") Long teacherId){
         teacherService.deleteTeacher(teacherId);
     }
-
-
+    
     @PutMapping(path = "{teacherId}")
     public void updateTeacher(
         @PathVariable("teacherId") Long teacherId,
