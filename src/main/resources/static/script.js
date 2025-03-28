@@ -20,6 +20,7 @@ async function fetchTeachers() {
                 <td>${teacher.email}</td>
                 <td>${teacher.trainingtime}</td>
                 <td>
+                    <button data-id="${teacher.id}" class="btn btn-warning edit-btn">Bearbeiten</button>
                     <button onclick="deleteTeacher(${teacher.id})" class="btn btn-danger">Löschen</button>
                 </td>
             `;
@@ -30,6 +31,69 @@ async function fetchTeachers() {
         console.error('Fehler:', error);
     }
 }
+
+// Funktion zum Hinzufügen eines Lehrers
+document.getElementById("teacherTableBody").addEventListener("click", function(event) {
+    if (event.target.classList.contains("edit-btn")) {
+        const id = event.target.getAttribute("data-id");
+        openEditModal(id);
+    }
+});
+
+async function openEditModal(id) {
+    try {
+        const response = await fetch(`/api/v1/teacher/${id}`);
+        if (!response.ok) {
+            throw new Error("Fehler beim Abrufen der Lehrerdaten");
+        }
+        const teacher = await response.json();
+
+        // Werte in die Eingabefelder des Modals setzen
+        document.getElementById("editTeacherId").value = teacher.id;
+        document.getElementById("editSurname").value = teacher.surname;
+        document.getElementById("editName").value = teacher.name;
+        document.getElementById("editNameShort").value = teacher.nameshort;
+        document.getElementById("editEmail").value = teacher.email;
+        document.getElementById("editTrainingTime").value = teacher.trainingtime;
+
+        // Bootstrap Modal öffnen
+        let modal = new bootstrap.Modal(document.getElementById("editTeacherModal"));
+        modal.show();
+    } catch (error) {
+        console.error("Fehler:", error);
+    }
+}
+
+document.getElementById("saveTeacherChanges").addEventListener("click", async function() {
+    const id = document.getElementById("editTeacherId").value;
+    const updatedTeacher = {
+        surname: document.getElementById("editSurname").value,
+        name: document.getElementById("editName").value,
+        nameshort: document.getElementById("editNameShort").value,
+        email: document.getElementById("editEmail").value,
+        trainingtime: document.getElementById("editTrainingTime").value
+    };
+
+    try {
+        const response = await fetch(`/api/v1/teacher/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updatedTeacher)
+        });
+
+        if (!response.ok) {
+            throw new Error("Fehler beim Aktualisieren des Lehrers");
+        }
+
+        alert("Lehrer erfolgreich aktualisiert!");
+        let modal = bootstrap.Modal.getInstance(document.getElementById("editTeacherModal"));
+        modal.hide();
+        fetchTeachers(); // Tabelle neu laden
+    } catch (error) {
+        console.error("Fehler:", error);
+    }
+});
+
 
 // Funktion zum Löschen eines Lehrers
 async function deleteTeacher(id) {
@@ -52,6 +116,38 @@ async function deleteTeacher(id) {
         console.error("Fehler:", error);
     }
 }
+
+//Modal für das Hinzufügen eines Lehrers
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("submitTeacher").addEventListener("click", function() {
+        const teacher = {
+            surname: document.getElementById("surname").value,
+            name: document.getElementById("name").value,
+            nameshort: document.getElementById("nameshort").value,
+            email: document.getElementById("email").value,
+            trainingtime: document.getElementById("trainingtime").value
+        };
+
+        fetch("http://localhost:8080/api/v1/teacher", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(teacher)
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert("Lehrer erfolgreich hinzugefügt!");
+                    document.getElementById("teacherForm").reset();
+                    let modal = bootstrap.Modal.getInstance(document.getElementById("teacherModal"));
+                    modal.hide();
+                    location.reload();
+                } else {
+                    alert("Fehler beim Hinzufügen!");
+                }
+            })
+            .catch(error => console.error("Fehler:", error));
+    });
+})
+
 
 // Beim Laden der Seite die Lehrer-Daten abrufen
 window.onload = fetchTeachers;

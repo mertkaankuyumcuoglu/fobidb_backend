@@ -5,11 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lehrer-Liste</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
 <h2>Lehrer-Liste</h2>
 
+<!-- Button zum Öffnen des Modals -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#teacherModal">
+    Neuen Lehrer hinzufügen
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="teacherModal" tabindex="-1" aria-labelledby="teacherModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="teacherModalLabel">Lehrer hinzufügen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+            </div>
+            <div class="modal-body">
+                <form id="teacherForm">
+                    <div class="mb-3">
+                        <label for="surname" class="form-label">Nachname</label>
+                        <input type="text" class="form-control" id="surname" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Vorname</label>
+                        <input type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nameshort" class="form-label">Kürzel</label>
+                        <input type="text" class="form-control" id="nameshort" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-Mail</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="trainingtime" class="form-label">Trainingszeit (Stunden)</label>
+                        <input type="number" class="form-control" id="trainingtime" min="0" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>
+                <button type="button" class="btn btn-primary" id="submitTeacher">Speichern</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Bearbeiten Modal-->
+<div class="modal fade" id="editTeacherModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Lehrer bearbeiten</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editTeacherId">
+                <div class="mb-3">
+                    <label>Nachname:</label>
+                    <input type="text" id="editSurname" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Vorname:</label>
+                    <input type="text" id="editName" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Kürzel:</label>
+                    <input type="text" id="editNameShort" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Email:</label>
+                    <input type="email" id="editEmail" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Trainingszeit:</label>
+                    <input type="text" id="editTrainingTime" class="form-control">
+                </div>
+                <button id="saveTeacherChanges" class="btn btn-primary">Speichern</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Tabelle-->
 <table>
     <thead>
     <tr>
@@ -27,6 +110,7 @@
     </tbody>
 </table>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
