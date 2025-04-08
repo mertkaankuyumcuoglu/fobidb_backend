@@ -11,7 +11,15 @@ import java.util.Date;
  *! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
-// Veranstaltung
+/**
+ ** @Author: Chris M.
+ ** @Date: 08.04.2025
+ ** @Description: Klasse für Veranstaltungen.
+ *
+ ** @Last Update: 08.04.2025
+ ** @Last Update by: Chris M.
+ */
+
 @Entity
 @Data
 public class Course {

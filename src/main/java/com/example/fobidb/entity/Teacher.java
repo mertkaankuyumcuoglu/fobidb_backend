@@ -11,6 +11,15 @@ import java.util.List;
  *! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
+/**
+ ** @Author: Chris M.
+ ** @Date: 07.04.2025
+ ** @Description: Klasse für Lehrer.
+ *
+ ** @Last Update: 08.04.2025
+ ** @Last Update by: Chris M.
+ */
+
 // Lehrer
 @Entity
 @Data

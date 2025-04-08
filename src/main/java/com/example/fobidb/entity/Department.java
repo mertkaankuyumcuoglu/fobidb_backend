@@ -14,7 +14,15 @@ import lombok.Data;
  *? Dies gilt zu überprüfen und zu testen
  */
 
-// Fachbereich
+/**
+ ** @Author: Chris M.
+ ** @Date: 08.04.2025
+ ** @Description: Klasse für Fachbereiche.
+ *
+ ** @Last Update: 08.04.2025
+ ** @Last Update by: Chris M.
+ */
+
 @Entity
 @Data
 public class Department {
