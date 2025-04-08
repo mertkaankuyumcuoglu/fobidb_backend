@@ -2,14 +2,10 @@ package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -26,13 +22,13 @@ public class TeacherService {
     }
 
     public void addTeacher(Teacher teacher) {
-        Teacher _teacher = new Teacher();
-        _teacher.setName(teacher.getName());
-        _teacher.setLastName(teacher.getLastName());
-        _teacher.setEmail(teacher.getEmail());
-        _teacher.setNameShort(teacher.getNameShort());
-        _teacher.setTrainingTime(teacher.getTrainingTime());
-        teacherRepository.save(_teacher);
+        Teacher teacherToAdd = new Teacher();
+        teacherToAdd.setName(teacher.getName());
+        teacherToAdd.setLastName(teacher.getLastName());
+        teacherToAdd.setEmail(teacher.getEmail());
+        teacherToAdd.setShortName(teacher.getShortName());
+        teacherToAdd.setTrainingTime(teacher.getTrainingTime());
+        teacherRepository.save(teacherToAdd);
     }
 
     public void deleteTeacher(Teacher teacher) {
