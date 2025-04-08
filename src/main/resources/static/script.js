@@ -14,11 +14,11 @@ async function fetchTeachers() {
 
             row.innerHTML = `
                 <td>${teacher.id}</td>
-                <td>${teacher.surname}</td>
+                <td>${teacher.lastName}</td>
                 <td>${teacher.name}</td>
-                <td>${teacher.nameshort}</td>
+                <td>${teacher.nameShort}</td>
                 <td>${teacher.email}</td>
-                <td>${teacher.trainingtime}</td>
+                <td>${teacher.trainingTime}</td>
                 <td>
                     <button data-id="${teacher.id}" class="btn btn-warning edit-btn">Bearbeiten</button>
                     <button onclick="deleteTeacher(${teacher.id})" class="btn btn-danger">Löschen</button>
@@ -50,11 +50,11 @@ async function openEditModal(id) {
 
         // Werte in die Eingabefelder des Modals setzen
         document.getElementById("editTeacherId").value = teacher.id;
-        document.getElementById("editSurname").value = teacher.surname;
+        document.getElementById("editLastName").value = teacher.lastName;
         document.getElementById("editName").value = teacher.name;
-        document.getElementById("editNameShort").value = teacher.nameshort;
+        document.getElementById("editNameShort").value = teacher.nameShort;
         document.getElementById("editEmail").value = teacher.email;
-        document.getElementById("editTrainingTime").value = teacher.trainingtime;
+        document.getElementById("editTrainingTime").value = teacher.trainingTime;
 
         // Bootstrap Modal öffnen
         let modal = new bootstrap.Modal(document.getElementById("editTeacherModal"));
@@ -67,11 +67,11 @@ async function openEditModal(id) {
 document.getElementById("saveTeacherChanges").addEventListener("click", async function() {
     const id = document.getElementById("editTeacherId").value;
     const updatedTeacher = {
-        surname: document.getElementById("editSurname").value,
+        lastName: document.getElementById("editLastName").value,
         name: document.getElementById("editName").value,
-        nameshort: document.getElementById("editNameShort").value,
+        nameShort: document.getElementById("editNameShort").value,
         email: document.getElementById("editEmail").value,
-        trainingtime: document.getElementById("editTrainingTime").value
+        trainingTime: document.getElementById("editTrainingTime").value
     };
 
     try {
@@ -121,12 +121,14 @@ async function deleteTeacher(id) {
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("submitTeacher").addEventListener("click", function() {
         const teacher = {
-            surname: document.getElementById("surname").value,
+            lastName: document.getElementById("lastName").value,
             name: document.getElementById("name").value,
-            nameshort: document.getElementById("nameshort").value,
+            nameShort: document.getElementById("nameShort").value,
             email: document.getElementById("email").value,
-            trainingtime: document.getElementById("trainingtime").value
+            trainingTime: document.getElementById("trainingTime").value
         };
+
+        console.log(teacher);
 
         fetch("http://localhost:8080/api/v1/teacher", {
             method: "POST",

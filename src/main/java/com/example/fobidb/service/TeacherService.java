@@ -26,7 +26,13 @@ public class TeacherService {
     }
 
     public void addTeacher(Teacher teacher) {
-        teacherRepository.save(teacher);
+        Teacher _teacher = new Teacher();
+        _teacher.setName(teacher.getName());
+        _teacher.setLastName(teacher.getLastName());
+        _teacher.setEmail(teacher.getEmail());
+        _teacher.setNameShort(teacher.getNameShort());
+        _teacher.setTrainingTime(teacher.getTrainingTime());
+        teacherRepository.save(_teacher);
     }
 
     public void deleteTeacher(Teacher teacher) {

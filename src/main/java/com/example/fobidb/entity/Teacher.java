@@ -7,10 +7,12 @@ import lombok.Data;
 @Data
 public class Teacher {
     @Id
-    public Long id;
-    public String surname;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long Id;
+
+    public String lastName;
     public String name;
-    public String nameshort;
+    public String nameShort;
     public String email;
-    public Integer trainingtime;
+    public Integer trainingTime;
 }
