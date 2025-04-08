@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class Teacher {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long Id;
 
     public String lastName;
