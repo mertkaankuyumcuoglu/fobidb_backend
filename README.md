@@ -19,7 +19,7 @@ Beispiel:
 ```
 
 ### **Methoden:**
-Unsere Methoden werden fangen großgeschrieben an. 
+Unsere Methoden fangen großgeschrieben an. 
 
 Beispiel:
 
