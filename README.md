@@ -1,5 +1,5 @@
 # Codestil
-**Kommentare:**
+### **Kommentare:**
 Unsere Kommentare ordnen wir nach Author, Erstellungsdatum, Beschreibung und zuletzt geupdatet. Dies fügen wir zum Anfang hinzu, um sofortige einsicht zu haben was wo hinzugefügt wurde und warum.
 
 Beispiel:
@@ -18,7 +18,7 @@ Beispiel:
  */
 ```
 
-**Methoden:**
+### **Methoden:**
 Unsere Methoden werden fangen großgeschrieben an. 
 
 Beispiel:
@@ -41,7 +41,7 @@ private void FooDoo(String foo, Long doo){
 }
 ```
 
-**Attribute**
+###**Attribute**
 Unsere Attribute schreiben wir klein und groß.
 
 Beispiel:
