@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- ** @Author: Michael P.
+ ** @Author: Michel P.
  ** @Author: Mert Kaan K.
  ** @Author: Chris M.
  ** @Date: 07.04.2025

@@ -12,7 +12,7 @@ import java.util.Optional;
 /**
  ** @Author: Chris M.
  ** @Author: Mert Kaan K.
- ** @Author: Micheal P.
+ ** @Author: Michel P.
  ** @Date: 08.04.2025
  ** @Description: Klasse für Veranstaltungen.
  *
