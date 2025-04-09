@@ -21,7 +21,7 @@ async function fetchTeachers() {
                 <td>${teacher.trainingTime}</td>
                 <td>
                     <button data-id="${teacher.id}" class="btn btn-warning edit-btn">Bearbeiten</button>
-                    <button onclick="deleteTeacher(${teacher.id})" class="btn btn-danger">Löschen</button>
+                    <button data-id="${teacher.id}" class="btn btn-danger delete-btn">Löschen</button>
                 </td>
             `;
 
@@ -32,7 +32,7 @@ async function fetchTeachers() {
     }
 }
 
-// Funktion zum Hinzufügen eines Lehrers
+// Methode zum hinzufügen eines Lehrers
 document.getElementById("teacherTableBody").addEventListener("click", function(event) {
     if (event.target.classList.contains("edit-btn")) {
         const id = event.target.getAttribute("data-id");
@@ -94,16 +94,25 @@ document.getElementById("saveTeacherChanges").addEventListener("click", async fu
     }
 });
 
+document.getElementById("teacherTableBody").addEventListener("click", function(event) {
+    if (event.target.classList.contains("delete-btn")) {
+        const id = event.target.getAttribute("data-id");
+        deleteTeacher(id);
+    }
+});
 
-// Funktion zum Löschen eines Lehrers
+// Methode zum löschen eines Lehrers
 async function deleteTeacher(id) {
+
     if (!confirm("Möchtest du diesen Lehrer wirklich löschen?")) {
         return;
     }
 
     try {
-        const response = await fetch(`/api/v1/teacher/${id}`, {
-            method: "DELETE"
+        const response = await fetch(`/api/v1/teacher`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(id)
         });
 
         if (!response.ok) {
