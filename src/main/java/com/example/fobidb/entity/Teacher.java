@@ -24,6 +24,19 @@ import java.util.List;
 @Entity
 @Data
 public class Teacher {
+    public Teacher() {
+
+    }
+
+    // Des testes wegen
+    public Teacher(String name, String lastName, String shortName, String email, int trainingTime) {
+        this.name = name;
+        this.lastName = lastName;
+        this.shortName = shortName;
+        this.email = email;
+        this.trainingTime = trainingTime;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
