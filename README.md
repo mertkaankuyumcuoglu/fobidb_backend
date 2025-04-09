@@ -26,7 +26,7 @@ Beispiel:
 ```java
 private void Foo(int foo){
 	while(true){
-	DoSomething();
+	DoSomething(foo);
 	}
 }
 ```
