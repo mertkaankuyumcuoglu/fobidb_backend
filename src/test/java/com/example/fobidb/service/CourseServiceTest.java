@@ -7,6 +7,16 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ ** Author: Chris M.
+ ** @Date: 09.04.2025
+ **
+ ** @Description: Testklasse für den CourseService.
+ **
+ ** @Last Update: 09.04.2025
+ ** @Reason: Erstellung der Testklasse für den CourseService.
+ */
+
 class CourseServiceTest {
 
     @Test
