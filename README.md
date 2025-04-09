@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Der letzte reviewer ist für das Mergen verantwortlich. Regelmäßige überprüfungen wären angemessen um Konflikte zu vermeiden!
+
 # Codestil
 ### **Kommentare:**
 Unsere Kommentare ordnen wir nach Author, Erstellungsdatum, Beschreibung und zuletzt geupdatet. Dies fügen wir zum Anfang hinzu, um sofortige einsicht zu haben was wo hinzugefügt wurde und warum.
