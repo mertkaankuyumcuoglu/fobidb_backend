@@ -11,6 +11,7 @@ Beispiel:
  ** @Author: C M
  ** @Author: M K K
  ** @Author: M P
+ ** @Author: H W
  ** @Date: 07.04.2025
  *
  ** @Description: Diese Klasse verwaltet die HTTP-Anfragen für die Lehrer-Entität.
