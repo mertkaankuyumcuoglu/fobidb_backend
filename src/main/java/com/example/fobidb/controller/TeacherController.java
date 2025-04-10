@@ -50,7 +50,6 @@ public class TeacherController {
     // Fügt einen neuen Lehrer hinzu
     @PostMapping
     public ResponseEntity<Teacher> CreateTeacher(@RequestBody Teacher teacher) {
-        System.out.println(teacher);
         teacherService.AddTeacher(teacher);
         return ResponseEntity.ok(teacher);
     }
@@ -58,7 +57,6 @@ public class TeacherController {
     // Löscht einen Lehrer
     @DeleteMapping
     public ResponseEntity<Teacher> DeleteTeacher(@RequestBody Long id) {
-        log.info("Deleting teacher with id: " + id);
         Optional<Teacher> optionalTeacher = teacherRepository.findTeacherById(id);
 
         if (optionalTeacher.isPresent()) {
