@@ -92,6 +92,23 @@ class TeacherControllerTest {
     }
 
     @Test
-    void UpdateTeacher() {
+    void UpdateTeacher() throws Exception {
+        testTeacher.setId(1L);
+
+        when(teacherRepository.findTeacherById(testTeacher.getId()))
+                .thenReturn(java.util.Optional.of(testTeacher));
+
+        when(teacherService.GetAllTeachers()).thenReturn(List.of(testTeacher))
+                .thenReturn(List.of(testTeacher));
+
+        testTeacher.setName("Maxi");
+
+        String json = objectMapper.writeValueAsString(testTeacher);
+
+        mockMvc.perform(put("/api/v1/teacher")
+                .contentType("application/json")
+                .content(json))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Maxi"));
     }
 }
