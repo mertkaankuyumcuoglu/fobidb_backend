@@ -48,7 +48,7 @@ class TeacherServiceTest {
         when(teacherRepository.findAll()).thenReturn(List.of(teacher1, teacher2));
 
         // Spiele den Aufruf der Methode GetAllTeachers() vor
-        List<Teacher> teachers = teacherService.GetAllTeachers();
+        List<Teacher> teachers = teacherService.getAllTeachers();
 
         // Überprüfe, ob die zurückgegebene Liste die erwarteten Lehrer enthält
         assertEquals(2, teachers.size());
@@ -69,7 +69,7 @@ class TeacherServiceTest {
         teacherToEdit.setName("Maximilian");
 
         // Spiele den Aufruf der Methode UpdateTeacher() vor
-        teacherService.UpdateTeacher(teacherToEdit);
+        teacherService.updateTeacher(teacherToEdit);
 
         // Überprüfe, ob der Lehrer erfolgreich aktualisiert wurde
         assertEquals("Maximilian", teacherToEdit.getName());
@@ -83,7 +83,7 @@ class TeacherServiceTest {
         when(teacherRepository.save(teacher)).thenReturn(teacher);
 
         // Spiele den Aufruf der Methode AddTeacher() vor
-        teacherService.AddTeacher(teacher);
+        teacherService.addTeacher(teacher);
 
         // Überprüfe, ob der Lehrer erfolgreich hinzugefügt wurde
         assertEquals("Max", teacher.getName());
@@ -97,7 +97,7 @@ class TeacherServiceTest {
         when(teacherRepository.findTeacherById(teacherToDelete.getId())).thenReturn(java.util.Optional.of(teacherToDelete));
 
         // Spiele den Aufruf der Methode DeleteTeacher() vor
-        teacherService.DeleteTeacher(teacherToDelete);
+        teacherService.deleteTeacher(teacherToDelete);
 
         verify(teacherRepository, times(1)).delete(teacherToDelete);
     }
@@ -112,7 +112,7 @@ class TeacherServiceTest {
         when(teacherRepository.findTeacherById(teacher.getId())).thenReturn(java.util.Optional.of(teacher));
 
         // Spiele den Aufruf der Methode GetTeacherById() vor
-        var result = teacherService.GetTeacherById(teacher.getId());
+        var result = teacherService.getTeacherById(teacher.getId());
 
         // Überprüfe, ob der Lehrer erfolgreich abgerufen wurde
         assertTrue(result.isPresent());
@@ -128,7 +128,7 @@ class TeacherServiceTest {
         when(teacherRepository.findTeacherByEmail(teacher.getEmail())).thenReturn(java.util.Optional.of(teacher));
 
         // Spiele den Aufruf der Methode GetTeacherByMail() vor
-        var result = teacherService.GetTeacherByMail(teacher.getEmail());
+        var result = teacherService.getTeacherByMail(teacher.getEmail());
 
         // Überprüfe, ob der Lehrer erfolgreich abgerufen wurde
         assertTrue(result.isPresent());

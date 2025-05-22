@@ -1,5 +1,6 @@
 package com.example.fobidb.service;
 
+import com.example.fobidb.entity.Course;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
@@ -22,7 +23,7 @@ class CourseServiceTest {
     @Test
     void calculateCourseDuration() {
         // Klasse CourseService
-        CourseService courseService = new CourseService();
+        CourseService courseService = new CourseService(null);
 
         // Testdaten
         Calendar start = Calendar.getInstance();
@@ -37,7 +38,7 @@ class CourseServiceTest {
         long expectedDuration = 24; // 1 Tag = 24 Stunden
 
         // Berechnung der Dauer
-        long actualDuration = courseService.CalculateCourseDuration(startDate, endDate);
+        long actualDuration = courseService.calculateCourseDuration(startDate, endDate);
 
         // Überprüfung des Ergebnisses
         assertEquals(expectedDuration, actualDuration);

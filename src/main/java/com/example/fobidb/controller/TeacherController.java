@@ -27,7 +27,7 @@ import java.util.Optional;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "api/v1/teacher")
+@RequestMapping(path = "/teacher")
 public class TeacherController {
     // Initialisiert den TeacherService
     private final TeacherService teacherService;
@@ -35,33 +35,33 @@ public class TeacherController {
 
     // Gibt eine Liste aller Lehrer zurück
     @GetMapping
-    public ResponseEntity<List<Teacher>> GetTeachers() {
-        List<Teacher> teacher = teacherService.GetAllTeachers();
+    public ResponseEntity<List<Teacher>> getTeachers() {
+        List<Teacher> teacher = teacherService.getAllTeachers();
         return ResponseEntity.ok(teacher);
     }
 
     // Gibt einen Lehrer zurück, der mit der angegebenen ID übereinstimmt
     @GetMapping("/email")
-    public ResponseEntity<Optional<Teacher>> GetTeacherByMail(@RequestParam("email") String email) {
-        Optional<Teacher> teacher = teacherService.GetTeacherByMail(email);
+    public ResponseEntity<Optional<Teacher>> getTeacherByMail(@RequestParam("email") String email) {
+        Optional<Teacher> teacher = teacherService.getTeacherByMail(email);
         return ResponseEntity.ok(teacher);
     }
 
     // Fügt einen neuen Lehrer hinzu
     @PostMapping
-    public ResponseEntity<Teacher> CreateTeacher(@RequestBody Teacher teacher) {
-        teacherService.AddTeacher(teacher);
+    public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
+        teacherService.addTeacher(teacher);
         return ResponseEntity.ok(teacher);
     }
 
     // Löscht einen Lehrer
     @DeleteMapping
-    public ResponseEntity<Teacher> DeleteTeacher(@RequestBody Long id) {
+    public ResponseEntity<Teacher> deleteTeacher(@RequestBody Long id) {
         Optional<Teacher> optionalTeacher = teacherRepository.findTeacherById(id);
 
         if (optionalTeacher.isPresent()) {
             Teacher teacher = optionalTeacher.get();
-            teacherService.DeleteTeacher(teacher);
+            teacherService.deleteTeacher(teacher);
             return ResponseEntity.ok(teacher);
 
         } else {
@@ -71,8 +71,8 @@ public class TeacherController {
 
     // Aktualisiert einen Lehrer
     @PutMapping
-    public ResponseEntity<Teacher> UpdateTeacher(@RequestBody Teacher teacher) {
-        teacherService.UpdateTeacher(teacher);
+    public ResponseEntity<Teacher> updateTeacher(@RequestBody Teacher teacher) {
+        teacherService.updateTeacher(teacher);
         return ResponseEntity.ok(teacher);
     }
 }

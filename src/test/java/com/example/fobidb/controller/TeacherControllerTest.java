@@ -37,8 +37,8 @@ class TeacherControllerTest {
 
     // GetTeachers Test
     @Test
-    void GetTeachers() throws Exception {
-        when(teacherService.GetAllTeachers())
+    void getTeachers() throws Exception {
+        when(teacherService.getAllTeachers())
                 .thenReturn(List.of(testTeacher));
 
         mockMvc.perform(get("/api/v1/teacher"))
@@ -50,8 +50,8 @@ class TeacherControllerTest {
 
     // GetTeacherByMail Test
     @Test
-    void GetTeacherByMail() throws Exception {
-        when(teacherService.GetTeacherByMail(testTeacher.getEmail()))
+    void getTeacherByMail() throws Exception {
+        when(teacherService.getTeacherByMail(testTeacher.getEmail()))
                 .thenReturn(java.util.Optional.of(testTeacher));
 
         mockMvc.perform(get("/api/v1/teacher/email")
@@ -62,7 +62,7 @@ class TeacherControllerTest {
     }
 
     @Test
-    void CreateTeacher() throws Exception {
+    void createTeacher() throws Exception {
         String json = objectMapper.writeValueAsString(testTeacher);
 
         mockMvc.perform(post("/api/v1/teacher")
@@ -75,13 +75,13 @@ class TeacherControllerTest {
     }
 
     @Test
-    void DeleteTeacher() throws Exception {
+    void deleteTeacher() throws Exception {
         testTeacher.setId(1L);
 
         long id = testTeacher.getId();
 
         when(teacherRepository.findTeacherById(id)).thenReturn(java.util.Optional.of(testTeacher));
-        when(teacherService.GetAllTeachers()).thenReturn(List.of(testTeacher));
+        when(teacherService.getAllTeachers()).thenReturn(List.of(testTeacher));
 
         String json = objectMapper.writeValueAsString(id);
 
@@ -92,13 +92,13 @@ class TeacherControllerTest {
     }
 
     @Test
-    void UpdateTeacher() throws Exception {
+    void updateTeacher() throws Exception {
         testTeacher.setId(1L);
 
         when(teacherRepository.findTeacherById(testTeacher.getId()))
                 .thenReturn(java.util.Optional.of(testTeacher));
 
-        when(teacherService.GetAllTeachers()).thenReturn(List.of(testTeacher))
+        when(teacherService.getAllTeachers()).thenReturn(List.of(testTeacher))
                 .thenReturn(List.of(testTeacher));
 
         testTeacher.setName("Maxi");
