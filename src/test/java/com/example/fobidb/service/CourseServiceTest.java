@@ -1,12 +1,23 @@
 package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Course;
+import com.example.fobidb.entity.Department;
+import com.example.fobidb.entity.Teacher;
+import com.example.fobidb.repository.CourseRepository;
+import com.example.fobidb.repository.DepartmentRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 /**
  ** Author: Chris M.
@@ -14,11 +25,22 @@ import static org.junit.jupiter.api.Assertions.*;
  **
  ** @Description: Testklasse für den CourseService.
  **
- ** @Last Update: 09.04.2025
- ** @Reason: Erstellung der Testklasse für den CourseService.
+ ** @Last Update: 22.05.2025
+ ** @Reason: Anpassung der Testklasse an die neuen Anforderungen.
  */
 
+@ExtendWith(MockitoExtension.class)
 class CourseServiceTest {
+
+    @Mock
+    private CourseRepository courseRepository;
+
+    @InjectMocks
+    private CourseService courseService;
+
+    public CourseServiceTest(){
+
+    }
 
     @Test
     void calculateCourseDuration() {
@@ -42,5 +64,35 @@ class CourseServiceTest {
 
         // Überprüfung des Ergebnisses
         assertEquals(expectedDuration, actualDuration);
+    }
+
+    @Test
+    void getAllCourses() {
+        Calendar start = Calendar.getInstance();
+        start.set(2025, Calendar.APRIL, 8, 10, 0, 0);
+        Date startDate = start.getTime();
+
+        Calendar end = Calendar.getInstance();
+        end.set(2025, Calendar.APRIL, 9, 10, 0, 0);
+        Date endDate = end.getTime();
+
+        Department department = new Department(1L, "Test Department");
+        Teacher teacher = new Teacher("Name", "Nachname", "nn", "email", 20);
+        Course course = new Course(1L, "Test Course", "Test Description", startDate, endDate, teacher, department);
+
+
+        when(courseRepository.findAll())
+                .thenReturn(List.of(course));
+
+
+        List<Course> courses = courseService.getAllCourses();
+        assertEquals(1, courses.size());
+        assertEquals("Test Course", courses.get(0).getTitle());
+        assertEquals(startDate, courses.get(0).getStartDate());
+        assertEquals(endDate, courses.get(0).getEndDate());
+        assertEquals(1L, courses.get(0).getId());
+        assertEquals("Test Department", courses.get(0).getDepartment().getName());
+        assertEquals("Name", courses.get(0).getContact().getName());
+
     }
 }

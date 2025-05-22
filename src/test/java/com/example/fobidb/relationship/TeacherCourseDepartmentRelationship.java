@@ -43,7 +43,6 @@ public class TeacherCourseDepartmentRelationship {
 
         Department department = new Department();
         department.setName("Department Name");
-        department.setCourse(course);
 
         List<Department> departments = new LinkedList<>();
         departments.add(department);

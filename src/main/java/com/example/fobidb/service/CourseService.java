@@ -2,8 +2,6 @@ package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Course;
 import com.example.fobidb.repository.CourseRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +13,16 @@ import java.util.List;
  ** @Date: 08.04.2025
  ** @Description: Klasse für Veranstaltungen.
  *
- ** @Last Update: 08.04.2025
+ ** @Last Update: 22.05.2025
  ** @Last Update by: Chris M.
+ *  @Reason: Course erstellen, Alle kurse erhalten
  */
 
 @RequiredArgsConstructor
 @Service
 public class CourseService {
     private final CourseRepository courseRepository;
+
 
     // Berechnet die Dauer der Events in Stunden
     public Long calculateCourseDuration(Date start, Date end){
@@ -31,8 +31,8 @@ public class CourseService {
         return durationInMillis / (1000 * 60 * 60);
     }
 
-    public void createNewPost(Course course){
-
+    public void createNewCourse(Course course){
+        courseRepository.save(course);
     }
 
     public List<Course> getAllCourses() {

@@ -41,7 +41,7 @@ class TeacherControllerTest {
         when(teacherService.getAllTeachers())
                 .thenReturn(List.of(testTeacher));
 
-        mockMvc.perform(get("/api/v1/teacher"))
+        mockMvc.perform(get("/teacher"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.length()").value(1))
@@ -54,7 +54,7 @@ class TeacherControllerTest {
         when(teacherService.getTeacherByMail(testTeacher.getEmail()))
                 .thenReturn(java.util.Optional.of(testTeacher));
 
-        mockMvc.perform(get("/api/v1/teacher/email")
+        mockMvc.perform(get("/teacher/email")
                 .param("email", testTeacher.getEmail()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
@@ -65,7 +65,7 @@ class TeacherControllerTest {
     void createTeacher() throws Exception {
         String json = objectMapper.writeValueAsString(testTeacher);
 
-        mockMvc.perform(post("/api/v1/teacher")
+        mockMvc.perform(post("/teacher")
                 .contentType("application/json")
                 .content(json))
                 .andExpect(status().isOk())
@@ -85,7 +85,7 @@ class TeacherControllerTest {
 
         String json = objectMapper.writeValueAsString(id);
 
-        mockMvc.perform(delete("/api/v1/teacher")
+        mockMvc.perform(delete("/teacher")
                 .contentType("application/json")
                         .content(json))
                 .andExpect(status().isOk());
@@ -105,7 +105,7 @@ class TeacherControllerTest {
 
         String json = objectMapper.writeValueAsString(testTeacher);
 
-        mockMvc.perform(put("/api/v1/teacher")
+        mockMvc.perform(put("/teacher")
                 .contentType("application/json")
                 .content(json))
                 .andExpect(status().isOk())
