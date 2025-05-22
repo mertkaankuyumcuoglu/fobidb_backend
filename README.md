@@ -23,12 +23,12 @@ Beispiel:
 ```
 
 ### **Methoden:**
-Unsere Methoden fangen großgeschrieben an. 
+Unsere Methoden schreiben wir im Camel Case
 
 Beispiel:
 
 ```java
-private void Foo(int foo){
+private void foo(int foo){
 	while(true){
 	DoSomething(foo);
 	}
@@ -36,7 +36,7 @@ private void Foo(int foo){
 ```
 
 ```java
-private void FooDoo(String foo, Long doo){
+private void fooDoo(String foo, Long doo){
 	if(foo == "?" && doo == 1){
 		DoSomething();
 	}
@@ -46,7 +46,7 @@ private void FooDoo(String foo, Long doo){
 ```
 
 ### **Attribute**
-Unsere Attribute schreiben wir klein und groß.
+Unsere Attribute schreiben wir ebenfalls im Camel Case
 
 Beispiel:
 ```java
