@@ -1,9 +1,7 @@
 package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -26,10 +24,9 @@ import java.util.List;
 // Lehrer
 @Entity
 @Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
-    public Teacher() {
-
-    }
 
     // Des testes wegen
     public Teacher(String name, String lastName, String shortName, String email, int trainingTime) {

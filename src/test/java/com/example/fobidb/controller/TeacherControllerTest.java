@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 
@@ -35,7 +36,7 @@ class TeacherControllerTest {
     @MockBean
     private TeacherRepository teacherRepository;
 
-    // GetTeachers Test
+    // getTeachers Test
     @Test
     void getTeachers() throws Exception {
         when(teacherService.getAllTeachers())
@@ -48,7 +49,7 @@ class TeacherControllerTest {
                 .andExpect(jsonPath("$[0].name").value("Max"));
     }
 
-    // GetTeacherByMail Test
+    // getTeacherByMail Test
     @Test
     void getTeacherByMail() throws Exception {
         when(teacherService.getTeacherByMail(testTeacher.getEmail()))
@@ -61,6 +62,7 @@ class TeacherControllerTest {
                 .andExpect(jsonPath("$.name").value("Max"));
     }
 
+    // createTeacher Test
     @Test
     void createTeacher() throws Exception {
         String json = objectMapper.writeValueAsString(testTeacher);
@@ -74,6 +76,7 @@ class TeacherControllerTest {
 
     }
 
+    // deleteTeacher Test
     @Test
     void deleteTeacher() throws Exception {
         testTeacher.setId(1L);
@@ -91,6 +94,7 @@ class TeacherControllerTest {
                 .andExpect(status().isOk());
     }
 
+    // updateTeacher Test
     @Test
     void updateTeacher() throws Exception {
         testTeacher.setId(1L);
