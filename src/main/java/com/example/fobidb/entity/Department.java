@@ -1,7 +1,7 @@
 package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 /**
  *! Wichtig:
@@ -19,19 +19,17 @@ import lombok.Data;
  ** @Date: 08.04.2025
  ** @Description: Klasse für Fachbereiche.
  *
- ** @Last Update: 08.04.2025
+ ** @Last Update: 22.05.2025
  ** @Last Update by: Chris M.
  */
 
 @Entity
-@Data
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     private String name;
-
-    @OneToOne
-    @JoinColumn(name = "course_id")
-    private Course course;
 }

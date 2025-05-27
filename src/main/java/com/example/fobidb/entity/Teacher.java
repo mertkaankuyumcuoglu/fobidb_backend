@@ -2,12 +2,15 @@ package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 /**
  *! Wichtig:
- *! Lombok Annotation @Data generiert Getter, Setter, toString, equals und hashCode
+ *! Lombok Annotation @Getter / @Setter generiert Getter, Setter, toString, equals und hashCode
  *! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
@@ -22,7 +25,7 @@ import java.util.List;
 
 // Lehrer
 @Entity
-@Data
+@Getter @Setter
 public class Teacher {
     public Teacher() {
 
@@ -46,6 +49,9 @@ public class Teacher {
     private String shortName;
     private String email;
     private Integer trainingTime;
+
+    @Nullable
+    private String imageUrl;
 
     @ManyToMany
     @JoinTable(

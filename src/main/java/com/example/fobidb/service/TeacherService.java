@@ -25,33 +25,34 @@ import java.util.Optional;
 public class TeacherService {
     private final TeacherRepository teacherRepository;
 
-    public List<Teacher> GetAllTeachers() {
+    public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
     }
 
-    public void UpdateTeacher(@NotNull Teacher teacher) {
+    public void updateTeacher(@NotNull Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
-    public void AddTeacher(@NotNull Teacher teacher) {
+    public void addTeacher(@NotNull Teacher teacher) {
         Teacher teacherToAdd = new Teacher();
         teacherToAdd.setName(teacher.getName());
         teacherToAdd.setLastName(teacher.getLastName());
         teacherToAdd.setEmail(teacher.getEmail());
         teacherToAdd.setShortName(teacher.getShortName());
         teacherToAdd.setTrainingTime(teacher.getTrainingTime());
+        teacherToAdd.setImageUrl(teacher.getImageUrl());
         teacherRepository.save(teacherToAdd);
     }
 
-    public void DeleteTeacher(@NotNull Teacher teacher) {
+    public void deleteTeacher(@NotNull Teacher teacher) {
         teacherRepository.delete(teacher);
     }
 
-    public Optional<Teacher> GetTeacherById(long id) {
+    public Optional<Teacher> getTeacherById(long id) {
         return teacherRepository.findTeacherById(id);
     }
 
-    public Optional<Teacher> GetTeacherByMail(String email) {
+    public Optional<Teacher> getTeacherByMail(String email) {
         return teacherRepository.findTeacherByEmail(email);
     }
 }
