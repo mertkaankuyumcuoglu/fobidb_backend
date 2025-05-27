@@ -52,7 +52,10 @@ public class CourseService {
         course.setRatingCount(course.getRatingCount() + 1);
 
         // Berechnung der neuen Bewertung
-        return currentRating + ratingToAdd / course.getRatingCount();
+        double newRating = ((currentRating * course.getRatingCount()) + ratingToAdd) / (course.getRatingCount() + 1);
+        course.setRating(newRating);
+        courseRepository.save(course);
+        return newRating;
     }
 
 }
