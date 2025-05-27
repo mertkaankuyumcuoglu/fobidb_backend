@@ -1,16 +1,10 @@
 package com.example.fobidb.relationship;
 
-import com.example.fobidb.entity.Course;
-import com.example.fobidb.entity.Department;
 import com.example.fobidb.repository.CourseRepository;
 import com.example.fobidb.repository.DepartmentRepository;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest

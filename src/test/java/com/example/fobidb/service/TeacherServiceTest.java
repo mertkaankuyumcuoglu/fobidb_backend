@@ -10,33 +10,32 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
- ** Author: Chris M.
- ** @Date: 09.04.2025
- **
- ** @Description: Testklasse für den TeacherService.
- **
- ** @Last Update: 09.04.2025
- ** @Reason: Erstellung der Testklasse für den TeacherService.
+ * * Author: Chris M.
+ * * @Date: 09.04.2025
+ * *
+ * * @Description: Testklasse für den TeacherService.
+ * *
+ * * @Last Update: 09.04.2025
+ * * @Reason: Erstellung der Testklasse für den TeacherService.
  */
 
 @Slf4j
 class TeacherServiceTest {
 
+    Teacher testTeacher = new Teacher("Max", "Mustermann", "mm", "maxmustermann@mail.to", 20);
     @Mock
     private TeacherRepository teacherRepository;
-
     @InjectMocks
     private TeacherService teacherService;
 
-    public TeacherServiceTest(){
+    public TeacherServiceTest() {
         MockitoAnnotations.openMocks(this);
     }
-
-    Teacher testTeacher = new Teacher("Max", "Mustermann", "mm", "maxmustermann@mail.to", 20);
 
     @Test
     void getAllTeachers() {
