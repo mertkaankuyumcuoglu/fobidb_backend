@@ -41,7 +41,7 @@ public class CourseService {
     }
 
     public Long CalculateCourseRating(Long Id, Long ratingToAdd){
-        Course course = courseRepository.findById(Id).isPresent() ? courseRepository.findById(Id).get() : null;
+        Course course = courseRepository.findById(Id).orElse(null);
 
         if(course == null) return null;
 
