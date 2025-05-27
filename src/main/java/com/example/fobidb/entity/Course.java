@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.lang.annotation.Documented;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +38,12 @@ public class Course {
     private String description;
     private Date startDate;
     private Date endDate;
-    private Long rating;
+
+    @ElementCollection
+    private List<Long> rating;
+
+    private Long ratingAvg;
+
     private Long ratingCount;
 
     @ElementCollection

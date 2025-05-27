@@ -78,6 +78,9 @@ class CourseServiceTest {
         Teacher teacher = new Teacher("Name", "Nachname", "nn", "email", 20);
 
         List<String> comments = List.of("Comment 1", "Comment 2");
+        List<Long> ratings = List.of(4L, 5L);
+
+        when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
 
         Course course = new Course(
                 1L,
@@ -85,8 +88,9 @@ class CourseServiceTest {
                 "some desc",
                 startDate,
                 endDate,
-                3L,
-                1L,
+                ratings,
+                (long) ratings.size(),
+                courseService.calculateCourseRating(1L, 4L),
                 comments,
                 teacher,
                 department
@@ -106,5 +110,12 @@ class CourseServiceTest {
         assertEquals("Test Department", courses.get(0).getDepartment().getName());
         assertEquals("Name", courses.get(0).getContact().getName());
 
+    }
+
+    @Test
+    void calculateCourseRating(){
+
+
+        courseService.calculateCourseRating(1L, 4L);
     }
 }

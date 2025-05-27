@@ -19,7 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(TeacherController.class)
 class TeacherControllerTest {
     // Test Lehrer
-    Teacher testTeacher = new Teacher("Max", "Mustermann", "mm", "maxmustermann@mail.to", 20);
+    Teacher testTeacher = new Teacher(
+            "Max",
+            "Mustermann",
+            "mm",
+            "maxmustermann@mail.to",
+            20
+    );
+
     ObjectMapper objectMapper = new ObjectMapper();
 
     // Initialisiert den MockMvc

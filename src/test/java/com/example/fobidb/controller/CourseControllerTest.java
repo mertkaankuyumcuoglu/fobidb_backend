@@ -21,32 +21,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(CourseController.class)
 public class CourseControllerTest {
-    Calendar calendar = Calendar.getInstance();
-    {
-        calendar.set(2023, Calendar.OCTOBER, 1);
-    }
-    Date start = calendar.getTime();
-
-    {
-        calendar.set(2023, Calendar.OCTOBER, 2);
-    }
-    Date end = calendar.getTime();
-
-    List<String> comments = List.of("Great course!", "Very informative.", "Loved the practical examples.");
-
-    Course testCourse = new Course(
-            1L,
-            "some course",
-            "some desc",
-            start,
-            end,
-            3L,
-            1L,
-            comments,
-            null,
-            null
-    );
-
     @Autowired
     private MockMvc mockMvc;
 
@@ -56,10 +30,41 @@ public class CourseControllerTest {
     @MockBean
     private CourseRepository courseRepository;
 
+    Calendar calendar = Calendar.getInstance();
+    Date start = calendar.getTime();
+    Date end = calendar.getTime();
+    List<String> comments = List.of("Great course!", "Very informative.", "Loved the practical examples.");
+    List<Long> ratings = List.of(5L, 4L, 3L);
+
+
+    {
+        calendar.set(2023, Calendar.OCTOBER, 1);
+    }
+
+    {
+        calendar.set(2023, Calendar.OCTOBER, 2);
+    }
+
     @Test
     void getCourses() throws Exception {
+        when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
+
+        Course course = new Course(
+                1L,
+                "some course",
+                "some desc",
+                start,
+                end,
+                ratings,
+                (long) ratings.size(),
+                courseService.calculateCourseRating(1L, 4L),
+                comments,
+                null,
+                null
+        );
+
         when(courseService.getAllCourses())
-                .thenReturn(List.of(testCourse));
+                .thenReturn(List.of(course));
 
         mockMvc.perform(get("/course"))
                 .andExpect(status().isOk())
@@ -70,12 +75,28 @@ public class CourseControllerTest {
 
     @Test
     void createCourse() throws Exception {
-        when(courseRepository.save(testCourse))
-                .thenReturn(testCourse);
+        when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
+
+        Course course = new Course(
+                1L,
+                "some course",
+                "some desc",
+                start,
+                end,
+                ratings,
+                (long) ratings.size(),
+                courseService.calculateCourseRating(1L, 4L),
+                comments,
+                null,
+                null
+        );
+
+        when(courseRepository.save(course))
+                .thenReturn(course);
 
         mockMvc.perform(post("/course")
-                .contentType("application/json")
-                .content("{\"title\":\"some course\",\"description\":\"some desc\",\"startDate\":\"2023-10-01T00:00:00Z\",\"endDate\":\"2023-10-02T00:00:00Z\",\"rating\":3,\"ratingCount\":1,\"comments\":[\"Great course!\",\"Very informative.\",\"Loved the practical examples.\"]}"))
+                        .contentType("application/json")
+                        .content("{\"title\":\"some course\",\"description\":\"some desc\",\"startDate\":\"2023-10-01T00:00:00Z\",\"endDate\":\"2023-10-02T00:00:00Z\",\"rating\":3,\"ratingCount\":1,\"comments\":[\"Great course!\",\"Very informative.\",\"Loved the practical examples.\"]}"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.title").value("some course"))
@@ -85,10 +106,26 @@ public class CourseControllerTest {
 
     @Test
     void rateCourse() throws Exception {
-        when(courseRepository.findById(1L))
-                .thenReturn(Optional.ofNullable(testCourse));
+        when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
 
-        when(courseService.CalculateCourseRating(1L, 4L))
+        Course course = new Course(
+                1L,
+                "some course",
+                "some desc",
+                start,
+                end,
+                ratings,
+                (long) ratings.size(),
+                courseService.calculateCourseRating(1L, 4L),
+                comments,
+                null,
+                null
+        );
+
+        when(courseRepository.findById(1L))
+                .thenReturn(Optional.of(course));
+
+        when(courseService.calculateCourseRating(1L, 4L))
                 .thenReturn(4L);
 
         mockMvc.perform(post("/course/rating")

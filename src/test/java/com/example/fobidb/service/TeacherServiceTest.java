@@ -27,9 +27,26 @@ import static org.mockito.Mockito.*;
 @Slf4j
 class TeacherServiceTest {
 
-    Teacher testTeacher = new Teacher("Max", "Mustermann", "mm", "maxmustermann@mail.to", 20);
+    // Lehrer hinzufügen
+    Teacher teacher1 = new Teacher(
+            "John",
+            "Lastname",
+            "jl",
+            "johnlastname@mail.to",
+            10
+    );
+
+    Teacher teacher2 = new Teacher(
+            "Max",
+            "Mustermann",
+            "mm",
+            "maxmustermann@mail.to",
+            20
+    );
+
     @Mock
     private TeacherRepository teacherRepository;
+
     @InjectMocks
     private TeacherService teacherService;
 
@@ -39,10 +56,6 @@ class TeacherServiceTest {
 
     @Test
     void getAllTeachers() {
-        // Lehrer hinzufügen
-        Teacher teacher1 = new Teacher("John", "Lastname", "jl", "johnlastname@mail.to", 10);
-        Teacher teacher2 = testTeacher;
-
         // Wenn teacherRepository.findAll() aufgerufen wird, gib die Liste der Lehrer zurück
         when(teacherRepository.findAll()).thenReturn(List.of(teacher1, teacher2));
 
@@ -58,7 +71,7 @@ class TeacherServiceTest {
     @Test
     void updateTeacher() {
         // Lehrer hinzufügen
-        Teacher teacherToEdit = testTeacher;
+        Teacher teacherToEdit = teacher2;
         Teacher editedTeacher = new Teacher();
 
         // Wenn teacherRepository.save() aufgerufen wird, gib den bearbeiteten Lehrer zurück
@@ -76,7 +89,7 @@ class TeacherServiceTest {
 
     @Test
     void addTeacher() {
-        Teacher teacher = testTeacher;
+        Teacher teacher = teacher2;
 
         // Wenn teacherRepository.save() aufgerufen wird, gib den Lehrer zurück
         when(teacherRepository.save(teacher)).thenReturn(teacher);
@@ -90,7 +103,7 @@ class TeacherServiceTest {
 
     @Test
     void deleteTeacher() {
-        Teacher teacherToDelete = testTeacher;
+        Teacher teacherToDelete = teacher2;
 
         // Wenn teacherRepository.delete() aufgerufen wird, gib den Lehrer zurück
         when(teacherRepository.findTeacherById(teacherToDelete.getId())).thenReturn(java.util.Optional.of(teacherToDelete));
@@ -104,7 +117,7 @@ class TeacherServiceTest {
     @Test
     void getTeacherById() {
         // Lehrer hinzufügen
-        Teacher teacher = testTeacher;
+        Teacher teacher = teacher2;
         teacher.setId(1L);
 
         // Wenn teacherRepository.findTeacherById() aufgerufen wird, gib den Lehrer zurück
@@ -121,7 +134,7 @@ class TeacherServiceTest {
     @Test
     void getTeacherByMail() {
         // Lehrer hinzufügen
-        Teacher teacher = testTeacher;
+        Teacher teacher = teacher2;
 
         // Wenn teacherRepository.findTeacherByEmail() aufgerufen wird, gib den Lehrer zurück
         when(teacherRepository.findTeacherByEmail(teacher.getEmail())).thenReturn(java.util.Optional.of(teacher));

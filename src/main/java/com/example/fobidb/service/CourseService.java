@@ -40,20 +40,28 @@ public class CourseService {
         return courseRepository.findAll();
     }
 
-    public Long CalculateCourseRating(Long Id, Long ratingToAdd){
+    public Long calculateCourseRating(Long Id, Long ratingToAdd){
         Course course = courseRepository.findById(Id).orElse(null);
 
         if(course == null) return null;
 
-        Long currentRating = course.getRating();
+        Long currentRating = course.getRatingAvg();
 
         if(currentRating == null || currentRating < 0 || currentRating > 5 || currentRating == 0) return currentRating;
 
         course.setRatingCount(course.getRatingCount() + 1);
 
         // Berechnung der neuen Bewertung
-        double newRating = ((currentRating * course.getRatingCount()) + ratingToAdd) / (course.getRatingCount() + 1);
-        course.setRating(newRating);
+        List<Long> ratings = course.getRating();
+
+        Long ratingSum = 0L;
+
+        for(Long rating : ratings){
+            ratingSum += rating;
+        }
+
+        Long newRating = (ratingSum + ratingToAdd) / course.getRatingCount();
+        course.setRatingAvg(newRating);
         courseRepository.save(course);
         return newRating;
     }
