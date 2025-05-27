@@ -12,16 +12,16 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- ** @Author: Chris M.
- ** @Author: Mert Kaan K.
- ** @Author: Michel P.
- ** @Date: 07.04.2025
- *
- ** @Description: Diese Klasse verwaltet die HTTP-Anfragen für die Lehrer-Entität.
- *
- ** @Last Update: 08.04.2025
- ** @Last Update by: Chris M.
- ** @Reason: Kommentar hinzugefügt
+ * * @Author: Chris M.
+ * * @Author: Mert Kaan K.
+ * * @Author: Michel P.
+ * * @Date: 07.04.2025
+ * <p>
+ * * @Description: Diese Klasse verwaltet die HTTP-Anfragen für die Lehrer-Entität.
+ * <p>
+ * * @Last Update: 08.04.2025
+ * * @Last Update by: Chris M.
+ * * @Reason: Kommentar hinzugefügt
  */
 
 @Slf4j

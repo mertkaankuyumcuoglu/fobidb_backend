@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -55,7 +54,7 @@ class TeacherControllerTest {
                 .thenReturn(java.util.Optional.of(testTeacher));
 
         mockMvc.perform(get("/teacher/email")
-                .param("email", testTeacher.getEmail()))
+                        .param("email", testTeacher.getEmail()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.name").value("Max"));
@@ -66,8 +65,8 @@ class TeacherControllerTest {
         String json = objectMapper.writeValueAsString(testTeacher);
 
         mockMvc.perform(post("/teacher")
-                .contentType("application/json")
-                .content(json))
+                        .contentType("application/json")
+                        .content(json))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Max"));
 
@@ -86,7 +85,7 @@ class TeacherControllerTest {
         String json = objectMapper.writeValueAsString(id);
 
         mockMvc.perform(delete("/teacher")
-                .contentType("application/json")
+                        .contentType("application/json")
                         .content(json))
                 .andExpect(status().isOk());
     }
@@ -106,8 +105,8 @@ class TeacherControllerTest {
         String json = objectMapper.writeValueAsString(testTeacher);
 
         mockMvc.perform(put("/teacher")
-                .contentType("application/json")
-                .content(json))
+                        .contentType("application/json")
+                        .content(json))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Maxi"));
     }

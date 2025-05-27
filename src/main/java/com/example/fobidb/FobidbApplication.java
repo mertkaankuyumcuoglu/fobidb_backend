@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class FobidbApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(FobidbApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(FobidbApplication.class, args);
+    }
 
 }
 

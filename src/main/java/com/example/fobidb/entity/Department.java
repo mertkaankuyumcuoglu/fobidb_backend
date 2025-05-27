@@ -1,12 +1,18 @@
 package com.example.fobidb.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
- *! Wichtig:
- *! Lombok Annotation @Data generiert Getter, Setter, toString, equals und hashCode
- *! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
+ * ! Wichtig:
+ * ! Lombok Annotation @Data generiert Getter, Setter, toString, equals und hashCode
+ * ! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
 /**
@@ -24,7 +30,8 @@ import lombok.*;
  */
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Department {

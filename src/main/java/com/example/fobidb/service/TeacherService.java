@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- ** @Author: Chris M.
- ** @Author: Mert Kaan K.
- ** @Author: Michel P.
- ** @Date: 08.04.2025
- ** @Description: Klasse für Veranstaltungen.
- *
- ** @Last Update: 08.04.2025
- ** @Last Update by: Chris M.
+ * * @Author: Chris M.
+ * * @Author: Mert Kaan K.
+ * * @Author: Michel P.
+ * * @Date: 08.04.2025
+ * * @Description: Klasse für Veranstaltungen.
+ * <p>
+ * * @Last Update: 08.04.2025
+ * * @Last Update by: Chris M.
  */
 
 @RequiredArgsConstructor

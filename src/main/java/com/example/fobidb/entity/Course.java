@@ -1,14 +1,19 @@
 package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.lang.annotation.Documented;
 import java.util.Date;
+import java.util.List;
 
 /**
- *! Wichtig:
- *! Lombok Annotation @Data generiert Getter, Setter, toString, equals und hashCode
- *! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
+ * ! Wichtig:
+ * ! Lombok Annotation @Data generiert Getter, Setter, toString, equals und hashCode
+ * ! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
 /**
@@ -22,7 +27,8 @@ import java.util.Date;
  */
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Course {
@@ -33,8 +39,11 @@ public class Course {
     private String description;
     private Date startDate;
     private Date endDate;
+    private Long rating;
+    private Long ratingCount;
 
-
+    @ElementCollection
+    List<String> comments;
 
     @ManyToOne
     @JoinColumn(name = "contact_id")
