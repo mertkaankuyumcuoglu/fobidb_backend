@@ -1,6 +1,20 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 28.05.2025
+ *   *
+ *   * @Description: Testklasse für den CourseController.
+ *   *
+ *   * @Last Update: 28.05.25, 11:37
+ *   * @Reason: Fehler wurden gefixt, die das Rating falsch berechnet haben
+ *
+ *
+ */
+
 package com.example.fobidb.controller;
 
 import com.example.fobidb.entity.Course;
+import com.example.fobidb.entity.Department;
+import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.CourseRepository;
 import com.example.fobidb.service.CourseService;
 import org.junit.jupiter.api.Test;
@@ -77,10 +91,26 @@ public class CourseControllerTest {
     void createCourse() throws Exception {
         when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
 
-        Course course = new Course(
+        Course course = Course
+                .builder()
+                .Id(1L)
+                .title("Course Title")
+                .description("Course Description")
+                .startDate(start)
+                .endDate(end)
+                .rating(ratings)
+                .ratingAvg(courseService.calculateCourseRating(1L, 4L))
+                .ratingCount((long) ratings.size())
+                .comments(comments)
+                .contact(Teacher.builder().name("Max").build())
+                .department(Department.builder().name("Test Department").build())
+                .build();
+
+
+                /*new Course(
                 1L,
-                "some course",
-                "some desc",
+                "Course Title",
+                "Course Description",
                 start,
                 end,
                 ratings,
@@ -89,18 +119,18 @@ public class CourseControllerTest {
                 comments,
                 null,
                 null
-        );
+        );*/
 
         when(courseRepository.save(course))
                 .thenReturn(course);
 
         mockMvc.perform(post("/course")
                         .contentType("application/json")
-                        .content("{\"title\":\"some course\",\"description\":\"some desc\",\"startDate\":\"2023-10-01T00:00:00Z\",\"endDate\":\"2023-10-02T00:00:00Z\",\"rating\":3,\"ratingCount\":1,\"comments\":[\"Great course!\",\"Very informative.\",\"Loved the practical examples.\"]}"))
+                        .content("{\"id\": 1, \"title\": \"Course Title\", \"description\": \"Course Description\", \"startDate\": \"2023-10-01T00:00:00Z\", \"endDate\": \"2023-10-02T00:00:00Z\", \"rating\": [5, 4, 3], \"ratingAvg\": 4, \"ratingCount\": 3, \"comments\": [\"Great course!\", \"Very informative.\", \"Loved the practical examples.\"], \"contact\": {\"name\": \"Max\"}, \"department\": {\"name\": \"Test Department\"}}"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.title").value("some course"))
-                .andExpect(jsonPath("$.description").value("some desc"));
+                .andExpect(jsonPath("$.title").value("Course Title"))
+                .andExpect(jsonPath("$.description").value("Course Description"));
 
     }
 

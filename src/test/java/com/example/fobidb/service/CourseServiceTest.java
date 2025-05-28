@@ -1,3 +1,15 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 28.05.2025
+ *   *
+ *   * @Description: Testklasse für den TeacherController.
+ *   *
+ *   * @Last Update: 28.05.25, 11:14
+ *   * @Reason: Erstellung der Testklasse
+ *
+ *
+ */
+
 package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Course;
@@ -16,16 +28,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
-
-/**
- * * Author: Chris M.
- * * @Date: 09.04.2025
- * *
- * * @Description: Testklasse für den CourseService.
- * *
- * * @Last Update: 22.05.2025
- * * @Reason: Anpassung der Testklasse an die neuen Anforderungen.
- */
 
 @ExtendWith(MockitoExtension.class)
 class CourseServiceTest {
@@ -74,27 +76,19 @@ class CourseServiceTest {
         end.set(2025, Calendar.APRIL, 9, 10, 0, 0);
         Date endDate = end.getTime();
 
-        Department department = new Department(1L, "Test Department");
-        Teacher teacher = new Teacher("Name", "Nachname", "nn", "email", 20);
-
-        List<String> comments = List.of("Comment 1", "Comment 2");
-        List<Long> ratings = List.of(4L, 5L);
-
-        when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
-
-        Course course = new Course(
-                1L,
-                "some course",
-                "some desc",
-                startDate,
-                endDate,
-                ratings,
-                (long) ratings.size(),
-                courseService.calculateCourseRating(1L, 4L),
-                comments,
-                teacher,
-                department
-        );
+        Course course = Course.builder()
+                .Id(1L)
+                .title("Course Title")
+                .description("Course Description")
+                .startDate(startDate)
+                .endDate(endDate)
+                .rating(List.of(4L, 5L))
+                .ratingAvg(4L)
+                .ratingCount(2L)
+                .comments(List.of("Comment 1", "Comment 2"))
+                .contact(Teacher.builder().name("Name").build())
+                .department(new Department(1L, "Test Department"))
+                .build();
 
 
         when(courseRepository.findAll())
@@ -103,7 +97,7 @@ class CourseServiceTest {
 
         List<Course> courses = courseService.getAllCourses();
         assertEquals(1, courses.size());
-        assertEquals("some course", courses.get(0).getTitle());
+        assertEquals("Course Title", courses.get(0).getTitle());
         assertEquals(startDate, courses.get(0).getStartDate());
         assertEquals(endDate, courses.get(0).getEndDate());
         assertEquals(1L, courses.get(0).getId());
@@ -113,7 +107,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void calculateCourseRating(){
+    void calculateCourseRating() {
 
 
         courseService.calculateCourseRating(1L, 4L);

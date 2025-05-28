@@ -1,8 +1,21 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date:
+ *   *
+ *   * @Description:
+ *   *
+ *   * @Last Update: 28.05.25, 11:12
+ *   * @Reason:
+ *
+ *
+ */
+
 package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,44 +27,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
-/**
- * * Author: Chris M.
- * * @Date: 09.04.2025
- * *
- * * @Description: Testklasse für den TeacherService.
- * *
- * * @Last Update: 09.04.2025
- * * @Reason: Erstellung der Testklasse für den TeacherService.
- */
-
 @Slf4j
 class TeacherServiceTest {
-
-    // Lehrer hinzufügen
-    Teacher teacher1 = new Teacher(
-            "John",
-            "Lastname",
-            "jl",
-            "johnlastname@mail.to",
-            10
-    );
-
-    Teacher teacher2 = new Teacher(
-            "Max",
-            "Mustermann",
-            "mm",
-            "maxmustermann@mail.to",
-            20
-    );
+    private Teacher teacher1;
+    private Teacher teacher2;
 
     @Mock
     private TeacherRepository teacherRepository;
-
     @InjectMocks
     private TeacherService teacherService;
 
     public TeacherServiceTest() {
         MockitoAnnotations.openMocks(this);
+    }
+
+    @BeforeEach
+    void setUp() {
+        teacher1 = Teacher
+                .builder()
+                .name("John")
+                .lastName("Lastname")
+                .shortName("jl")
+                .email("johnlastname@mail.to")
+                .trainingTime(10)
+                .build();
+
+
+        teacher2 = Teacher
+                .builder()
+                .name("Max")
+                .lastName("Mustermann")
+                .shortName("mm")
+                .email("maxmustermann@mail.to")
+                .trainingTime(20)
+                .build();
     }
 
     @Test

@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * ! Wichtig:
@@ -16,8 +13,8 @@ import lombok.Setter;
  */
 
 /**
- *? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt
- *? Dies gilt zu überprüfen und zu testen
+ * ? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt
+ * ? Dies gilt zu überprüfen und zu testen
  */
 
 /**
@@ -34,6 +31,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,3 +1,15 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 28.05.2025
+ *   *
+ *   * @Description: Testklasse für den TeacherController.
+ *   *
+ *   * @Last Update: 28.05.25, 11:24
+ *   * @Reason:
+ *
+ *
+ */
+
 package com.example.fobidb.controller;
 
 import com.example.fobidb.entity.Teacher;
@@ -19,13 +31,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(TeacherController.class)
 class TeacherControllerTest {
     // Test Lehrer
-    Teacher testTeacher = new Teacher(
-            "Max",
-            "Mustermann",
-            "mm",
-            "maxmustermann@mail.to",
-            20
-    );
+    Teacher testTeacher = Teacher
+            .builder()
+            .name("Max")
+            .lastName("Mustermann")
+            .shortName("mm")
+            .email("maxmustermann@mail.to")
+            .trainingTime(20)
+            .build();
+
 
     ObjectMapper objectMapper = new ObjectMapper();
 
