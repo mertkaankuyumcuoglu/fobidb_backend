@@ -56,21 +56,21 @@ public class CourseController {
     @PostMapping
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         courseService.createNewCourse(course);
-        return ResponseEntity.ok(course);
+        return ResponseEntity.ok(null);
     }
 
     @PostMapping("/rating")
     public ResponseEntity<CourseResponse> courseRating(@RequestBody CourseRequest courseRequest) {
-        if(courseRequest.getRating() != null || courseRequest.getComment() != null){
+        if (courseRequest.getRating() != null || courseRequest.getComment() != null) {
             Course course = courseRepository.findById(courseRequest.getId()).orElse(null);
 
-            if(course != null){
-                if(courseRequest.getRating() != null) {
+            if (course != null) {
+                if (courseRequest.getRating() != null) {
                     course.setRatingAvg(courseService.calculateCourseRating(course.getId(), courseRequest.getRating()));
                     courseRepository.save(course);
                 }
 
-                if(courseRequest.getComment() != null){
+                if (courseRequest.getComment() != null) {
                     List<String> comments = new ArrayList<>(course.getComments());
                     comments.add(courseRequest.getComment());
                     course.setComments(comments);
