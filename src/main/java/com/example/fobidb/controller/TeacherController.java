@@ -1,5 +1,6 @@
 package com.example.fobidb.controller;
 
+import com.example.fobidb.dto.TeacherResponse;
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import com.example.fobidb.service.TeacherService;
@@ -49,20 +50,26 @@ public class TeacherController {
 
     // Fügt einen neuen Lehrer hinzu
     @PostMapping
-    public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
-        teacherService.addTeacher(teacher);
-        return ResponseEntity.ok(teacher);
+    public ResponseEntity<TeacherResponse> createTeacher(@RequestBody Teacher teacher) {
+        try {
+            teacherService.addTeacher(teacher);
+            return ResponseEntity.ok(null);
+        } catch (Exception e) {
+            TeacherResponse teacherResponse = new TeacherResponse();
+            teacherResponse.setErrorMessage(e.getMessage());
+            return ResponseEntity.ok(teacherResponse);
+        }
     }
 
     // Löscht einen Lehrer
     @DeleteMapping
-    public ResponseEntity<Teacher> deleteTeacher(@RequestBody Long id) {
+    public ResponseEntity<String> deleteTeacher(@RequestBody Long id) {
         Optional<Teacher> optionalTeacher = teacherRepository.findTeacherById(id);
 
         if (optionalTeacher.isPresent()) {
             Teacher teacher = optionalTeacher.get();
             teacherService.deleteTeacher(teacher);
-            return ResponseEntity.ok(teacher);
+            return ResponseEntity.ok(null);
 
         } else {
             return ResponseEntity.notFound().build();
@@ -73,6 +80,6 @@ public class TeacherController {
     @PutMapping
     public ResponseEntity<Teacher> updateTeacher(@RequestBody Teacher teacher) {
         teacherService.updateTeacher(teacher);
-        return ResponseEntity.ok(teacher);
+        return ResponseEntity.ok(null);
     }
 }
