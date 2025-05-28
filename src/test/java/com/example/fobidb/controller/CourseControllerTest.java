@@ -68,8 +68,8 @@ public class CourseControllerTest {
 
         Course course = new Course(
                 1L,
-                "some course",
-                "some desc",
+                "Course Title",
+                "Course Description",
                 start,
                 end,
                 ratings,
@@ -87,7 +87,7 @@ public class CourseControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].title").value("some course"));
+                .andExpect(jsonPath("$[0].title").value("Course Title"));
     }
 
     @Test
@@ -109,21 +109,6 @@ public class CourseControllerTest {
                 .department(Department.builder().name("Test Department").build())
                 .build();
 
-
-                /*new Course(
-                1L,
-                "Course Title",
-                "Course Description",
-                start,
-                end,
-                ratings,
-                (long) ratings.size(),
-                courseService.calculateCourseRating(1L, 4L),
-                comments,
-                null,
-                null
-        );*/
-
         when(courseRepository.save(course))
                 .thenReturn(course);
 
@@ -141,19 +126,20 @@ public class CourseControllerTest {
     void rateCourse() throws Exception {
         when(courseService.calculateCourseRating(1L, 4L)).thenReturn(4L);
 
-        Course course = new Course(
-                1L,
-                "some course",
-                "some desc",
-                start,
-                end,
-                ratings,
-                (long) ratings.size(),
-                courseService.calculateCourseRating(1L, 4L),
-                comments,
-                null,
-                null
-        );
+        Course course = Course
+                .builder()
+                .Id(1L)
+                .title("Course Title")
+                .description("Course Description")
+                .startDate(start)
+                .endDate(end)
+                .rating(ratings)
+                .ratingAvg(courseService.calculateCourseRating(1L, 4L))
+                .ratingCount((long) ratings.size())
+                .comments(comments)
+                .contact(Teacher.builder().name("Max").build())
+                .department(Department.builder().name("Test Department").build())
+                .build();
 
         when(courseRepository.findById(1L))
                 .thenReturn(Optional.of(course));
@@ -166,7 +152,7 @@ public class CourseControllerTest {
                         .content("{\"id\":1,\"rating\":4,\"comment\":\"Great course!\"}"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
-                .andExpect(jsonPath("$.title").value("some course"))
+                .andExpect(jsonPath("$.title").value("Course Title"))
                 .andExpect(jsonPath("$.rating").value(4))
                 .andExpect(jsonPath("$.comments.length()").value(4));
     }
