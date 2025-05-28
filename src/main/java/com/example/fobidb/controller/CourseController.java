@@ -5,11 +5,7 @@ import com.example.fobidb.dto.CourseResponse;
 import com.example.fobidb.entity.Course;
 import com.example.fobidb.repository.CourseRepository;
 import com.example.fobidb.service.CourseService;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
-import org.hamcrest.core.IsNull;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,7 +43,7 @@ public class CourseController {
                                 course.getEndDate()
                         ),
                         course.getContact(),
-                        course.getRating(),
+                        course.getRatingAvg(),
                         course.getComments() != null ? course.getComments() : new ArrayList<>(),
                         null
 
@@ -70,7 +66,7 @@ public class CourseController {
 
             if(course != null){
                 if(courseRequest.getRating() != null) {
-                    course.setRating(courseService.CalculateCourseRating(course.getId(), courseRequest.getRating()));
+                    course.setRatingAvg(courseService.calculateCourseRating(course.getId(), courseRequest.getRating()));
                     courseRepository.save(course);
                 }
 
@@ -88,7 +84,7 @@ public class CourseController {
                         course.getStartDate().toString(),
                         courseService.calculateCourseDuration(course.getStartDate(), course.getEndDate()),
                         course.getContact(),
-                        course.getRating(),
+                        course.getRatingAvg(),
                         course.getComments(),
                         null
                 );

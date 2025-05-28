@@ -1,3 +1,15 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 08.04.2025
+ *   *
+ *   * @Description: Response-Klasse für Kurse.
+ *   *
+ *   * @Last Update: 28.05.25, 13:06
+ *   * @Reason:
+ *
+ *
+ */
+
 package com.example.fobidb.dto;
 
 import com.example.fobidb.entity.Teacher;
@@ -6,15 +18,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
-/**
- * * @Author: Chris M.
- * * @Date: 08.04.2025
- * * @Description: Klasse für Veranstaltungen.
- * <p>
- * * @Last Update: 22.05.2025
- * * @Last Update by: Chris M.
- */
 
 @Data
 @NoArgsConstructor

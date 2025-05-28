@@ -1,8 +1,7 @@
 package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -14,18 +13,21 @@ import java.util.List;
  */
 
 /**
- ** @Author: Chris M.
- ** @Date: 07.04.2025
- ** @Description: Klasse für Lehrer.
- *
- ** @Last Update: 08.04.2025
- ** @Last Update by: Chris M.
+ * * @Author: Chris M.
+ * * @Date: 07.04.2025
+ * * @Description: Klasse für Lehrer.
+ * <p>
+ * * @Last Update: 08.04.2025
+ * * @Last Update by: Chris M.
  */
 
 // Lehrer
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,17 +53,4 @@ public class Teacher {
             inverseJoinColumns = @JoinColumn(name = "department_id")
     )
     private List<Department> department;
-
-    public Teacher() {
-
-    }
-
-    // Des testes wegen
-    public Teacher(String name, String lastName, String shortName, String email, int trainingTime) {
-        this.name = name;
-        this.lastName = lastName;
-        this.shortName = shortName;
-        this.email = email;
-        this.trainingTime = trainingTime;
-    }
 }

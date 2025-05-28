@@ -1,12 +1,20 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 08.04.2025
+ *   *
+ *   * @Description:Klasse für Veranstaltungen.
+ *   *
+ *   * @Last Update: 28.05.25, 11:18
+ *   * @Reason: Builder
+ *
+ *
+ */
+
 package com.example.fobidb.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.lang.annotation.Documented;
 import java.util.Date;
 import java.util.List;
 
@@ -16,21 +24,12 @@ import java.util.List;
  * ! Diese Annotation ist wichtig, da sie die Boilerplate-Codes reduziert
  */
 
-/**
- ** @Author: Chris M.
- ** @Date: 08.04.2025
- ** @Description: Klasse für Veranstaltungen.
- *
- ** @Last Update: 22.05.2025
- ** @Last Update by: Chris M.
- ** @Reason: Teacher als Kontaktperson hinzugefügt
- */
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,7 +38,11 @@ public class Course {
     private String description;
     private Date startDate;
     private Date endDate;
-    private Long rating;
+
+    @ElementCollection
+    private List<Long> rating;
+
+    private Long ratingAvg;
     private Long ratingCount;
 
     @ElementCollection

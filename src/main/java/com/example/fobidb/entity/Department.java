@@ -1,13 +1,22 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 22.05.2025
+ *   *
+ *   * @Description: Klasse für Fachbereiche.
+ *   *
+ *   * @Last Update: 28.05.25, 13:05
+ *   * @Reason:
+ *
+ *
+ */
+
 package com.example.fobidb.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * ! Wichtig:
@@ -16,17 +25,8 @@ import lombok.Setter;
  */
 
 /**
- *? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt
- *? Dies gilt zu überprüfen und zu testen
- */
-
-/**
- ** @Author: Chris M.
- ** @Date: 08.04.2025
- ** @Description: Klasse für Fachbereiche.
- *
- ** @Last Update: 22.05.2025
- ** @Last Update by: Chris M.
+ * ? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt.
+ * ? Dies gilt zu überprüfen und zu testen
  */
 
 @Entity
@@ -34,6 +34,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
