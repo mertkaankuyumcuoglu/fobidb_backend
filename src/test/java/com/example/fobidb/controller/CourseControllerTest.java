@@ -45,8 +45,7 @@ public class CourseControllerTest {
     private CourseRepository courseRepository;
 
     Calendar calendar = Calendar.getInstance();
-    Date start = calendar.getTime();
-    Date end = calendar.getTime();
+
     List<String> comments = List.of("Great course!", "Very informative.", "Loved the practical examples.");
     List<Long> ratings = List.of(5L, 4L, 3L);
 
@@ -55,9 +54,13 @@ public class CourseControllerTest {
         calendar.set(2023, Calendar.OCTOBER, 1);
     }
 
+    Date start = calendar.getTime();
+
     {
         calendar.set(2023, Calendar.OCTOBER, 2);
     }
+
+    Date end = calendar.getTime();
 
     @Test
     void getCourses() throws Exception {
