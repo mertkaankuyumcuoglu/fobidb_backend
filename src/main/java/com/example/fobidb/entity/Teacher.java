@@ -14,12 +14,12 @@ import java.util.List;
  */
 
 /**
- ** @Author: Chris M.
+ ** @Author: Chris M., Michel P.
  ** @Date: 07.04.2025
  ** @Description: Klasse für Lehrer.
  *
- ** @Last Update: 08.04.2025
- ** @Last Update by: Chris M.
+ ** @Last Update: 28.05.2025
+ ** @Last Update by: Michel P.
  */
 
 // Lehrer
@@ -35,6 +35,7 @@ public class Teacher {
     private String shortName;
     private String email;
     private Integer trainingTime;
+    private String password;
     @Nullable
     private String imageUrl;
     @ManyToMany
