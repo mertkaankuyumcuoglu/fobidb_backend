@@ -1,3 +1,15 @@
+/*
+ *   * Author: Chris M.
+ *   * @Date: 22.05.2025
+ *   *
+ *   * @Description: Klasse für Fachbereiche.
+ *   *
+ *   * @Last Update: 28.05.25, 13:05
+ *   * @Reason:
+ *
+ *
+ */
+
 package com.example.fobidb.entity;
 
 import jakarta.persistence.Entity;
@@ -13,17 +25,8 @@ import lombok.*;
  */
 
 /**
- * ? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt
+ * ? Vielleicht sind die Beziehungen zwischen den Entitäten nicht korrekt.
  * ? Dies gilt zu überprüfen und zu testen
- */
-
-/**
- ** @Author: Chris M.
- ** @Date: 08.04.2025
- ** @Description: Klasse für Fachbereiche.
- *
- ** @Last Update: 22.05.2025
- ** @Last Update by: Chris M.
  */
 
 @Entity
