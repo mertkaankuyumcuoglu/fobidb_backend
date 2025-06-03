@@ -10,7 +10,7 @@
  * <p>
  * * @Last Update: 03.06.2025
  * * @Last Update by: Michel P.
- * * @Reason: Import des Kommentars, import der validation:60
+ * * @Reason: Validation geschieht im Frontend. Daher unnötig im Backend
  */
 -->
 
@@ -55,12 +55,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <!-- dependency für das Validieren der Auth-DTO's -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>

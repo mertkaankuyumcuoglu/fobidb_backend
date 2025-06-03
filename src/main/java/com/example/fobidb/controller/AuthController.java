@@ -1,5 +1,6 @@
 package com.example.fobidb.controller;
 
+import com.example.fobidb.dto.LoginRequest;
 import com.example.fobidb.repository.TeacherRepository;
 import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,8 @@ import com.example.fobidb.service.AuthService;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.Valid;
+
 /**
  * * @Author: Michel P.
  * * @Date: 28.05.2025
@@ -29,5 +32,11 @@ public class AuthController {
     //
     private final AuthService authService;
     private final TeacherRepository teacherRepository;
+
+    @PostMapping("login")
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+
+    }
+
 
 }
