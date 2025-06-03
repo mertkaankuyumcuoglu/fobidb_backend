@@ -28,7 +28,7 @@ public class AuthService {
     private final TeacherRepository teacherRepository;
     private final PasswordEncoder passwordEncoder;
 
-    // erstellt einen neuen Lehrer
+    // Registriert einen neuen Lehrer
     @Transactional
     public Teacher createTeacher(RegisterRequest registerRequest) {
 
@@ -51,6 +51,4 @@ public class AuthService {
         // Überträgt das Lehrerobjekt an die Datenbank
         return teacherRepository.save(newTeacher);
     }
-
-
 }
