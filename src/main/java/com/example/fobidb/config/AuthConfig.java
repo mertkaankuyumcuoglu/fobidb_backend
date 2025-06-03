@@ -15,12 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class AuthConfig {
 
-    /**
-     * Definiert einen BCryptPasswordEncoder als Spring Bean.
-     * Dieser Bean kann dann in anderen Komponenten (z.B. AuthService) injiziert werden.
-     *
-     * @return Eine Instanz von BCryptPasswordEncoder.
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

@@ -31,7 +31,7 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String lastName;
-    private String name;
+    private String firstName;
     private String shortName;
     private String email;
     private Integer trainingTime;
@@ -63,7 +63,7 @@ public class Teacher {
 
     // Des testes wegen
     public Teacher(String name, String lastName, String shortName, String email, int trainingTime) {
-        this.name = name;
+        this.firstName = name;
         this.lastName = lastName;
         this.shortName = shortName;
         this.email = email;

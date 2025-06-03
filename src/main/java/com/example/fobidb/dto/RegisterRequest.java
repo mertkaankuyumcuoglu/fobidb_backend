@@ -22,7 +22,10 @@ public class RegisterRequest {
     private String lastName;
 
     @NotBlank(message = "Vorname darf nicht leer sein")
-    private String name;
+    private String firstName;
+
+    @NotBlank(message = "Kürzel darf nicht leer sein")
+    private String shortName;
 
     @NotBlank(message = "E-Mail darf nicht leer sein")
     @Email(message = "Kein gültiges E-Mail-Format")

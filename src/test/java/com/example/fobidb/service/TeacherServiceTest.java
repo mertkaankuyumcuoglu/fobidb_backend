@@ -51,8 +51,8 @@ class TeacherServiceTest {
 
         // Überprüfe, ob die zurückgegebene Liste die erwarteten Lehrer enthält
         assertEquals(2, teachers.size());
-        assertEquals(teachers.get(0).getName(), teacher1.getName());
-        assertEquals(teachers.get(1).getName(), teacher2.getName());
+        assertEquals(teachers.get(0).getFirstName(), teacher1.getFirstName());
+        assertEquals(teachers.get(1).getFirstName(), teacher2.getFirstName());
     }
 
     @Test
@@ -65,13 +65,13 @@ class TeacherServiceTest {
         when(teacherRepository.save(teacherToEdit)).thenReturn(teacherToEdit);
 
         // Daten ändern
-        teacherToEdit.setName("Maximilian");
+        teacherToEdit.setFirstName("Maximilian");
 
         // Spiele den Aufruf der Methode UpdateTeacher() vor
         teacherService.updateTeacher(teacherToEdit);
 
         // Überprüfe, ob der Lehrer erfolgreich aktualisiert wurde
-        assertEquals("Maximilian", teacherToEdit.getName());
+        assertEquals("Maximilian", teacherToEdit.getFirstName());
     }
 
     @Test
@@ -85,7 +85,7 @@ class TeacherServiceTest {
         teacherService.addTeacher(teacher);
 
         // Überprüfe, ob der Lehrer erfolgreich hinzugefügt wurde
-        assertEquals("Max", teacher.getName());
+        assertEquals("Max", teacher.getFirstName());
     }
 
     @Test
@@ -115,7 +115,7 @@ class TeacherServiceTest {
 
         // Überprüfe, ob der Lehrer erfolgreich abgerufen wurde
         assertTrue(result.isPresent());
-        assertEquals(teacher.getName(), result.get().getName());
+        assertEquals(teacher.getFirstName(), result.get().getFirstName());
     }
 
     @Test
