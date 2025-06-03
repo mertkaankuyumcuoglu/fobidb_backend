@@ -1,5 +1,6 @@
 package com.example.fobidb.controller;
 
+import com.example.fobidb.repository.TeacherRepository;
 import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.hamcrest.core.IsNull;
@@ -27,6 +28,6 @@ import java.util.List;
 public class AuthController {
     //
     private final AuthService authService;
-    //private final AuthRepository authRepository;
+    private final TeacherRepository teacherRepository;
 
 }
