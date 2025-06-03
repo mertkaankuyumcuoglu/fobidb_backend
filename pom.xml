@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * * @Author: Chris M.
+ * * @Author: Mert Kaan K.
+ * * @Author: Michel P.
+ * * @Date: 03.06.2025
+ * * @Description: Abhängigkeiten des Projektes.
+ * <p>
+ * * @Last Update: 03.06.2025
+ * * @Last Update by: Michel P.
+ * * @Reason: Import des Kommentars, import der validation:60
+ */
+-->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
@@ -35,10 +50,17 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+        <!-- dependency fürs das hashen des Passwortes -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- dependency für das Validieren der Auth-DTO's -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <dependency>
