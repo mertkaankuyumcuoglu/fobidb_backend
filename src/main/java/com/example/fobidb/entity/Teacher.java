@@ -35,9 +35,13 @@ public class Teacher {
     private String shortName;
     private String email;
     private Integer trainingTime;
-    private String password;
+
+    @Column(nullable = false)
+    private String passwordHash;
+
     @Nullable
     private String imageUrl;
+
     @ManyToMany
     @JoinTable(
             name = "teacher_course",
