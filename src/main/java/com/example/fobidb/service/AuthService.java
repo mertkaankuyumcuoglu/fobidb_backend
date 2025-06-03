@@ -1,6 +1,7 @@
 package com.example.fobidb.service;
 
 import com.example.fobidb.entity.Teacher;
+import com.example.fobidb.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class AuthService {
 
+    TeacherRepository teacherRepository;
+    PasswordEncoder passwordEncoder;
+
+    public boolean authenticateUser() {
 
 
+        return false;
+    }
 
 }

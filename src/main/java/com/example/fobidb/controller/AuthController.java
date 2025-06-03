@@ -16,8 +16,6 @@ import com.example.fobidb.service.AuthService;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.validation.Valid;
-
 /**
  * * @Author: Michel P.
  * * @Date: 28.05.2025
@@ -29,14 +27,13 @@ import jakarta.validation.Valid;
 @RequiredArgsConstructor
 @RequestMapping(path = "/auth")
 public class AuthController {
-    //
+
     private final AuthService authService;
-    private final TeacherRepository teacherRepository;
 
-    @PostMapping("login")
-    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {
+    /*@PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
-    }
+        boolean isAuthenticated = authService.authenticateUser(loginRequest);
 
-
+    }*/
 }
