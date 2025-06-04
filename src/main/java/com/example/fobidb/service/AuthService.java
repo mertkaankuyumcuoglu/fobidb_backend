@@ -1,17 +1,18 @@
 package com.example.fobidb.service;
 
 import com.example.fobidb.dto.LoginRequest;
+import com.example.fobidb.dto.LoginResponse;
 import com.example.fobidb.dto.RegisterRequest;
+import com.example.fobidb.service.JwtService;
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Service;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -29,6 +30,8 @@ public class AuthService {
 
     private final TeacherRepository teacherRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     // Registriert einen neuen Lehrer
     @Transactional
