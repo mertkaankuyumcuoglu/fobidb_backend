@@ -1,16 +1,12 @@
 package com.example.fobidb.service;
 
 import com.example.fobidb.dto.LoginRequest;
-import com.example.fobidb.dto.LoginResponse;
 import com.example.fobidb.dto.RegisterRequest;
-import com.example.fobidb.service.JwtService;
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +31,7 @@ public class AuthService {
 
     // Registriert einen neuen Lehrer
     @Transactional
-    public Teacher createTeacher(RegisterRequest registerRequest) {
+    public Teacher registerTeacher(RegisterRequest registerRequest) {
 
         // Prüft ob bereits ein Lehrer anhand der Email existiert
         if(teacherRepository.existsTeacherByEmail(registerRequest.getEmail())) {
@@ -59,7 +55,7 @@ public class AuthService {
 
     // user login
     @Transactional
-    // bisher ohne Rückgabewert
+    // bisher ohne Rückgabewert -- soll ein Token zurückgeben
     public void userLogin(LoginRequest loginRequest) {
 
         String email = loginRequest.getEmail();
