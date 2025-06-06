@@ -1,6 +1,7 @@
 package com.example.fobidb.controller;
 
 import com.example.fobidb.dto.LoginRequest;
+import com.example.fobidb.dto.RegisterRequest;
 import com.example.fobidb.repository.TeacherRepository;
 import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
@@ -29,11 +30,16 @@ import java.util.List;
 public class AuthController {
 
     private final AuthService authService;
+    private  final LoginRequest loginResponse;
 
-    /*@PostMapping("/login")
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
+        return authService.registerTeacher(registerRequest);
+    }
+
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 
-        boolean isAuthenticated = authService.authenticateUser(loginRequest);
-
-    }*/
+        return ResponseEntity.ok(loginResponse)
+    }
 }

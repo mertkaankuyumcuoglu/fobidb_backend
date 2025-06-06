@@ -27,7 +27,6 @@ public class AuthService {
     private final TeacherRepository teacherRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
 
     // Registriert einen neuen Lehrer
     @Transactional
@@ -55,8 +54,7 @@ public class AuthService {
 
     // user login
     @Transactional
-    // bisher ohne Rückgabewert -- soll ein Token zurückgeben
-    public void userLogin(LoginRequest loginRequest) {
+    public String userLogin(LoginRequest loginRequest) {
 
         String email = loginRequest.getEmail();
         String rawPassword = loginRequest.getPassword();
@@ -70,8 +68,8 @@ public class AuthService {
         Teacher teacher = optionalTeacher.get();
 
         if(passwordEncoder.matches(rawPassword, teacher.getPasswordHash())) {
-            // Login wäre hier erfolgreich -- print ist nur Platzhalter
-            System.out.println("Login erfolgreich");
+            // erstellt ein Token anhand der E-Mail und gibt dieses zurück
+            return jwtService.createToken(email);
         }
         else {
             throw new RuntimeException("E-Mail oder Passwort ungültig");
