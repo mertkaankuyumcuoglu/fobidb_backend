@@ -55,4 +55,7 @@ public class Course {
     @OneToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<CourseRating> ratings;
 }

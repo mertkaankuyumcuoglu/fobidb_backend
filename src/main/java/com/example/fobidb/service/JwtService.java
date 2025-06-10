@@ -1,13 +1,15 @@
 package com.example.fobidb.service;
 
 import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.JWTCreator;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -33,6 +35,12 @@ public class JwtService {
     private static final String secret = "NzUzZWE4ZDAyZWIyY2I3NjYxZTE3YzYxZWRjZDA2NGQwMTc3Y2UzMTZiMDYwNjYxZjgwNjEwOWM2Mzg5Njc5Mg==";
 
     private static final Algorithm algorithm = Algorithm.HMAC256(secret);
+
+    // JWT-Verifier für die Token-Validierung
+    private static final JWTVerifier verifier = JWT.require(algorithm)
+            .withIssuer("fobidb-backend")
+            .withAudience("fobidb-frontend")
+            .build();
 
     private final TeacherRepository teacherRepository;
 
@@ -64,9 +72,44 @@ public class JwtService {
                     .withIssuedAt(issuedAt)
                     .withExpiresAt(expiresAt)
                     .sign(algorithm);
-        }
-        catch (JWTCreationException ex) {
+        } catch (JWTCreationException ex) {
             throw new JWTCreationException(ex.getMessage(), ex);
         }
     }
+
+    /**
+     * Extrahiert die E-Mail-Adresse aus einem JWT-Token.
+     *
+     * @param token Das JWT-Token als String
+     * @return Die E-Mail-Adresse des Benutzers oder null, wenn das Token ungültig ist
+     */
+    public String extractEmail(String token) {
+        try {
+            // Token validieren und decodieren
+            DecodedJWT decodedJWT = verifier.verify(token);
+
+            // E-Mail aus den Claims extrahieren
+            return decodedJWT.getClaim("email").asString();
+
+        } catch (JWTVerificationException e) {
+            // Bei ungültigem Token oder fehlenden Claims gibt null zurück
+            return null;
+        }
+    }
+
+    /**
+     * Überprüft, ob ein Token gültig ist.
+     *
+     * @param token Das zu prüfende JWT-Token
+     * @return true wenn das Token gültig ist, sonst false
+     */
+    public boolean validateToken(String token) {
+        try {
+            verifier.verify(token);
+            return true;
+        } catch (JWTVerificationException e) {
+            return false;
+        }
+    }
 }
+

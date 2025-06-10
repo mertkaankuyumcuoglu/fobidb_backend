@@ -12,11 +12,13 @@
 
 package com.example.fobidb.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class CourseRequest {
-    private Long Id;
+    @JsonProperty(value = "courseId", access = JsonProperty.Access.WRITE_ONLY)
+    private Long id; // Das Feld bleibt intern "id", kann aber als "courseId" in JSON empfangen werden
     private Long rating;
     private String comment;
 }

@@ -1,4 +1,4 @@
-/*
+package com.example.fobidb.dto;/*
  *   * Author: Chris M.
  *   * @Date: 08.04.2025
  *   *
@@ -10,9 +10,6 @@
  *
  */
 
-package com.example.fobidb.dto;
-
-import com.example.fobidb.entity.Teacher;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,11 +20,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CourseResponse {
+    private Long Id;
     private String title;
     private String description;
     private String startDate;
     private Long duration;
-    private Teacher contact;
+    private TeacherCourseResponse teacher;
     private Long rating;
     private List<String> comments;
 
