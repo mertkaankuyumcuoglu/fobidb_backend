@@ -35,7 +35,7 @@ public class TeacherService {
 
     public void addTeacher(@NotNull Teacher teacher) {
         Teacher teacherToAdd = new Teacher();
-        teacherToAdd.setName(teacher.getName());
+        teacherToAdd.setFirstName(teacher.getFirstName());
         teacherToAdd.setLastName(teacher.getLastName());
         teacherToAdd.setEmail(teacher.getEmail());
         teacherToAdd.setShortName(teacher.getShortName());

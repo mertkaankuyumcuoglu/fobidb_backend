@@ -50,7 +50,7 @@ public class TeacherCourseDepartmentRelationship {
 
 
         Teacher teacher = new Teacher();
-        teacher.setName("Max");
+        teacher.setFirstName("Max");
         teacher.setCourse(courses);
         teacher.setDepartment(departments);
         teacher = teacherRepository.save(teacher);
@@ -63,7 +63,7 @@ public class TeacherCourseDepartmentRelationship {
         assertNotNull(returnedTeacher.getDepartment());
         assertEquals("Course Title", returnedTeacher.getCourse().get(0).getTitle());
 
-        log.info("Teacher: " + returnedTeacher.getName());
+        log.info("Teacher: " + returnedTeacher.getFirstName());
         log.info("Course: " + returnedTeacher.getCourse().get(0).getTitle());
         log.info("Department: " + returnedTeacher.getDepartment().get(0).getName());
     }

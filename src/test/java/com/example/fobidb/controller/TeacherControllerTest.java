@@ -121,7 +121,7 @@ class TeacherControllerTest {
         when(teacherService.getAllTeachers()).thenReturn(List.of(testTeacher))
                 .thenReturn(List.of(testTeacher));
 
-        testTeacher.setName("Maxi");
+        testTeacher.setFirstName("Maxi");
 
         String json = objectMapper.writeValueAsString(testTeacher);
 

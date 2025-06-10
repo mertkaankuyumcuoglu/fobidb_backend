@@ -102,7 +102,7 @@ class CourseServiceTest {
         assertEquals(endDate, courses.get(0).getEndDate());
         assertEquals(1L, courses.get(0).getId());
         assertEquals("Test Department", courses.get(0).getDepartment().getName());
-        assertEquals("Name", courses.get(0).getContact().getName());
+        assertEquals("Name", courses.get(0).getContact().getFirstName());
 
     }
 

@@ -13,12 +13,12 @@ import java.util.List;
  */
 
 /**
- * * @Author: Chris M.
- * * @Date: 07.04.2025
- * * @Description: Klasse für Lehrer.
- * <p>
- * * @Last Update: 08.04.2025
- * * @Last Update by: Chris M.
+ ** @Author: Chris M.
+ ** @Date: 07.04.2025
+ ** @Description: Klasse für Lehrer.
+ *
+ ** @Last Update: 08.04.2025
+ ** @Last Update by: Chris M.
  */
 
 // Lehrer
@@ -37,8 +37,13 @@ public class Teacher {
     private String shortName;
     private String email;
     private Integer trainingTime;
+
+    @Column(nullable = false)
+    private String passwordHash;
+
     @Nullable
     private String imageUrl;
+
     @ManyToMany
     @JoinTable(
             name = "teacher_course",
