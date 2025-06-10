@@ -1,12 +1,12 @@
 package com.example.fobidb.service;
 
 import com.example.fobidb.dto.LoginRequest;
+import com.example.fobidb.dto.LoginResponse;
 import com.example.fobidb.dto.RegisterRequest;
 import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.repository.TeacherRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +33,7 @@ public class AuthService {
     public Teacher registerTeacher(RegisterRequest registerRequest) {
 
         // Prüft ob bereits ein Lehrer anhand der Email existiert
-        if(teacherRepository.existsTeacherByEmail(registerRequest.getEmail())) {
+        if (teacherRepository.existsTeacherByEmail(registerRequest.getEmail())) {
             throw new IllegalArgumentException("Diese E-Mail-Adresse ist bereits vergeben");
         }
 
@@ -52,7 +52,41 @@ public class AuthService {
         return teacherRepository.save(newTeacher);
     }
 
-    // user login
+    // Login-Methode, die ein LoginResponse-Objekt mit Token zurückgibt
+    @Transactional
+    public LoginResponse login(LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String rawPassword = loginRequest.getPassword();
+
+        Optional<Teacher> optionalTeacher = teacherRepository.findTeacherByEmail(email);
+
+        if (optionalTeacher.isEmpty()) {
+            throw new RuntimeException("E-Mail oder Passwort ungültig");
+        }
+
+        Teacher teacher = optionalTeacher.get();
+
+        if (passwordEncoder.matches(rawPassword, teacher.getPasswordHash())) {
+            // JWT-Token erstellen
+            String token = jwtService.createToken(email);
+
+            // LoginResponse erstellen und mit den Daten des Lehrers und dem Token befüllen
+            LoginResponse response = new LoginResponse();
+            response.setId(teacher.getId().toString());
+            response.setLastName(teacher.getLastName());
+            response.setFirstName(teacher.getFirstName());
+            response.setShortName(teacher.getShortName());
+            response.setEmail(teacher.getEmail());
+            response.setToken(token); // Den Token setzen
+            response.setMessage("Login erfolgreich");
+
+            return response;
+        } else {
+            throw new RuntimeException("E-Mail oder Passwort ungültig");
+        }
+    }
+
+    // user login (bestehende Methode, die nur den Token zurückgibt)
     @Transactional
     public String userLogin(LoginRequest loginRequest) {
 
@@ -61,19 +95,19 @@ public class AuthService {
 
         Optional<Teacher> optionalTeacher = teacherRepository.findTeacherByEmail(email);
 
-        if(optionalTeacher.isEmpty()) {
+        if (optionalTeacher.isEmpty()) {
             throw new RuntimeException("E-Mail oder Passwort ungültig");
         }
 
         Teacher teacher = optionalTeacher.get();
 
-        if(passwordEncoder.matches(rawPassword, teacher.getPasswordHash())) {
+        if (passwordEncoder.matches(rawPassword, teacher.getPasswordHash())) {
             // erstellt ein Token anhand der E-Mail und gibt dieses zurück
             return jwtService.createToken(email);
-        }
-        else {
+        } else {
             throw new RuntimeException("E-Mail oder Passwort ungültig");
             // lieber BadCredentialsException verwenden?
         }
     }
 }
+

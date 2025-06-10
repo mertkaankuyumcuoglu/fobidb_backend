@@ -1,11 +1,11 @@
 package com.example.fobidb.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 
 /**
  * * @Author: Michel P.
@@ -32,6 +32,6 @@ public class RegisterRequest {
     private String email;
 
     @NotBlank(message = "Passwort darf nicht leer sein")
-    @Size(min = 8,message = "Passwort muss mindestens 8 Zeichen lang sein")
+    @Size(min = 8, message = "Passwort muss mindestens 8 Zeichen lang sein")
     private String password;
 }

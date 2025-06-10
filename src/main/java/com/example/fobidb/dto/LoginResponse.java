@@ -11,6 +11,7 @@ public class LoginResponse {
     private String firstName;
     private String shortName;
     private String email;
+    private String token;  // JWT-Token für die Authentifizierung
 
     private String message;
 }

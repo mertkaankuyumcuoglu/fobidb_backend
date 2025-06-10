@@ -1,21 +1,16 @@
 package com.example.fobidb.controller;
 
 import com.example.fobidb.dto.LoginRequest;
+import com.example.fobidb.dto.LoginResponse;
 import com.example.fobidb.dto.RegisterRequest;
-import com.example.fobidb.repository.TeacherRepository;
-import jakarta.persistence.Id;
-import lombok.RequiredArgsConstructor;
-import org.hamcrest.core.IsNull;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
+import com.example.fobidb.entity.Teacher;
 import com.example.fobidb.service.AuthService;
-//import com.example.fobidb.repository.AuthRepository;
-
-import java.util.ArrayList;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * * @Author: Michel P.
@@ -30,16 +25,15 @@ import java.util.List;
 public class AuthController {
 
     private final AuthService authService;
-    private  final LoginRequest loginResponse;
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody RegisterRequest registerRequest) {
+    public Teacher register(@RequestBody RegisterRequest registerRequest) {
         return authService.registerTeacher(registerRequest);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-
-        return ResponseEntity.ok(loginResponse)
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+        LoginResponse response = authService.login(loginRequest);
+        return ResponseEntity.ok(response);
     }
 }
